@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  background-color: rgb(165, 228, 165);
+  padding: 1px 0px;
+  margin-bottom: 3px;
+}
+
+.navbar-ul {
+  list-style-type: none;
+}
+
+.navbar li {
+  display: inline;
+  padding: 3%;
+}
+
+.body-content {
+  max-width: 90%;
+  margin: auto;
+}
+
+.profile {
+  color: blue;
+}
