@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ClubList from "./ClubList";
 import CurrentClub from "./CurrentClub";
 import { NavLink } from 'react-router-dom';
+import CreateClub from './CreateClub';
 
 class MyClubs extends Component {
     
@@ -20,13 +21,22 @@ class MyClubs extends Component {
             {name: "Fiction4 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
             {name: "Romance4 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
         ],
-        currentClub: {}
+        currentClub: {},
+        display: false
     }
     
 
     onClubClick = (selectedClubObject) => {
         this.setState({
             currentClub: selectedClubObject
+        })
+    }
+
+    handleForm = (e) => {
+        this.setState((prevState) => {
+            return {
+                display: !prevState.display
+            }
         })
     }
 
@@ -39,10 +49,20 @@ class MyClubs extends Component {
                 <div className="selected-club">
                     <CurrentClub club={this.state.currentClub}/>
                 </div>
-                <div>
-                    <NavLink to="/create-club">Create a new Club!</NavLink>
 
+                {/* added form toggle here */}
+
+                <div>
+                    <button onClick={this.handleForm}>Create a new Club!</button>
+
+                    { this.state.display
+                    ?
+                    <CreateClub />
+                    :
+                    null
+                }
                 </div>
+    
             </div>
          );
     }
