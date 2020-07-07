@@ -59,12 +59,14 @@ code {
 
 .clubs {
   display: flex;
+  flex-direction: row;
   height: 35em;
 }
 
 .clubs-container {
  position: relative;
  width: 30%;
+ height: 90%;
  margin-right: 3%;
  overflow: auto;
 }
@@ -85,6 +87,13 @@ code {
 .selected-club {
   position: relative;
   width: 70%;
+}
+
+
+.add-club {
+  position: absolute;
+  bottom: 2em;
+  left: 45%;
 }
 
 .books-container {

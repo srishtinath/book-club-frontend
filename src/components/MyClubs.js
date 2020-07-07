@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ClubList from "./ClubList";
 import CurrentClub from "./CurrentClub";
+import { NavLink } from 'react-router-dom';
 
 class MyClubs extends Component {
     
@@ -37,6 +38,10 @@ class MyClubs extends Component {
                 </div>
                 <div className="selected-club">
                     <CurrentClub club={this.state.currentClub}/>
+                </div>
+                <div>
+                    <NavLink to="/create-club">Create a new Club!</NavLink>
+
                 </div>
             </div>
          );

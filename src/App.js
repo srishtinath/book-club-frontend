@@ -10,6 +10,7 @@ import NavBar from "./components/NavBar";
 import UserHome from './components/UserHome';
 import MyClubs from './components/MyClubs';
 import Books from './components/Books'
+import CreateClub from './components/CreateClub'
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/clubs" component={MyClubs} />
               <Route path="/books" component={Books} />
+              <Route path="/create-club" component={CreateClub} />
               <Route >
                 "Error!"
               </Route>
