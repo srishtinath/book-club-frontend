@@ -25,7 +25,7 @@ class NavBar extends Component {
                     <NavLink to="/books"><li>Books</li></NavLink>
                 </ul>
                 <div className="logo-container">
-                <img src={this.state.toggleImage ? WormPic5 : WormPic4} onClick={this.imageClick} className="logo"/>
+                <img src={this.state.toggleImage ? WormPic5 : WormPic4} onClick={this.imageClick} className="logo" alt="logo"/>
                 </div>
             </div>
          );

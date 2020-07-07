@@ -14,14 +14,14 @@ class Books extends Component {
         search: ""
     }
 
-    // componentDidMount(){
-    //     fetch("url")
-    //     .then (r => r.json())
-    //     .then(fetchedBooks => 
-    //         this.setState({
-    //             books: fetchedBooks
-    //         }))
-    // }
+    componentDidMount(){
+        fetch("http://localhost:3000/books")
+        .then(r => r.json())
+        .then(fetchedBooks => 
+            this.setState({
+                books: fetchedBooks
+            }))
+    }
 
     sendBooks = () => {
         return this.state.books

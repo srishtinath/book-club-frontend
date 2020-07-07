@@ -3,7 +3,6 @@ import {
   BrowserRouter,
   Switch,
   Route,
-  NavLink
 } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
