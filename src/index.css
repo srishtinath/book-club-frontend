@@ -89,12 +89,11 @@ code {
   width: 70%;
 }
 
-
-.add-club {
+/* .add-club {
   position: absolute;
   bottom: 2em;
   left: 45%;
-}
+} */
 
 .books-container {
   display: flex;

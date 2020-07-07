@@ -28,7 +28,6 @@ class App extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/clubs" component={MyClubs} />
               <Route path="/books" component={Books} />
-              <Route path="/create-club" component={CreateClub} />
               <Route >
                 "Error!"
               </Route>
