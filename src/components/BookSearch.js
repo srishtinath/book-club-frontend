@@ -7,7 +7,9 @@ class BookSearch extends Component {
     }
     render() { 
         return ( 
-            "BookSearch!"
+            <div>
+                <input type="text" placeholder="Search for a title or genre..." value={this.props.search} onChange={(e) => this.props.handleSearch(e.target.value)}></input>
+            </div>
          );
     }
 }

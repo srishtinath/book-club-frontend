@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 
+
 class Book extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
+    
     render() { 
+        let { title, author } = this.props.book
         return ( 
-            "Book!"
+            <div className="book-card">
+                {/* On rollover --> book description */}
+                {/* Image */}
+                { title }
+                <p>Author: { author }</p>
+            </div>
          );
     }
 }

@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Club from './Club';
 
-class ClubList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return ( 
-            "ClubList!"
-         );
-    }
+const ClubList = (props) => {
+    return ( 
+        <div className="clubs-list">
+        { props.clubs.map(club => 
+            <Club key={club.id} club={club} onClubClick={props.onClubClick}/>
+        )}
+        </div>
+     );
 }
  
 export default ClubList;

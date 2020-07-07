@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(214, 216, 215);
 }
 
 code {
@@ -13,18 +14,38 @@ code {
 }
 
 .navbar {
-  background-color: rgb(165, 228, 165);
+  background-color: rgb(42, 144, 174);
   padding: 1px 0px;
   margin-bottom: 3px;
+  height: 100%;
+  display: flex;
+  text-align: right;
 }
 
 .navbar-ul {
   list-style-type: none;
+  margin-right: 10%;
+  margin-left: auto;
 }
 
 .navbar li {
   display: inline;
   padding: 3%;
+}
+
+.logo-container {
+  position: absolute;
+  max-width: 20%;
+  bottom: 0%;
+  right: 0%;
+  padding: 1%;
+  background-color: rgb(214, 216, 215);
+  z-index: 10;
+}
+
+.logo {
+  max-width: 100%;
+  top: 0%;
 }
 
 .body-content {
@@ -34,4 +55,59 @@ code {
 
 .profile {
   color: blue;
+}
+
+.clubs {
+  display: flex;
+  height: 35em;
+}
+
+.clubs-container {
+ position: relative;
+ width: 30%;
+ margin-right: 3%;
+ overflow: auto;
+}
+
+.clubs-list {
+  margin: 2%;
+  cursor: pointer;
+}
+
+.club-card {
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin: 2%;
+  padding: 2%;
+}
+
+.selected-club {
+  position: relative;
+  width: 70%;
+}
+
+.books-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2%;
+}
+
+.books {
+  text-align: right;
+}
+.book-card {
+  width: 28%;
+  margin: 1%;
+  padding: 1%;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+
+.search-bar {
+  margin-top: 3%;
+  margin-right: 3%;
 }
