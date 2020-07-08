@@ -25,19 +25,19 @@ class ClubForm extends Component {
 
     handleSubmit= (event) => {
         event.preventDefault()
-        // fetch("http://localhost:3000/clubs", {
-        //     method: "POST",
-        //     headers: {
-        //         "content-type": "application/json",
-        //         "accept": "application/json"
-        //     },
-        //     body: JSON.stringify(this.state)
-        // })
-        // .then(r => r.json())
-        // .then(newClub => {
-        //     this.props.addOneClub(newClub)
-        // })
-        this.props.toggleDisplay()
+        fetch("http://localhost:3000/clubs", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then(r => r.json())
+        .then(newClub => {
+            this.props.addOneClub(newClub)
+            this.props.toggleDisplay(newClub)
+        })
     }
 
     render() { 

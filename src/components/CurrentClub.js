@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 class CurrentClub extends Component {
     
     state = {
-        showMembers: false
+        showMembers: false,
+        users: []
     }
 
     toggleMembers = () => {
@@ -45,34 +46,34 @@ class CurrentClub extends Component {
                 </div>
                 {/* Members: Progress on left below picture */}
                 
-                <div className="book-info">
-                    <h4>Current book: {this.findActiveBook(books).title}</h4>
+                {/* <div className="book-info">
+                    <h4>Current book: {this.findActiveBook() ? this.findActiveBook().title : null}</h4>
                         
                     <h4 align="center">Past books read</h4>
                     <ul>
                     {this.findPastBooks().map(book =>
-                        <li>{book.title}</li>
+                        <li>{book ? book.title : null}</li>
                         )}
                         </ul>
                         <br></br><button>Choose Book</button>
-                </div>
+                </div> */}
 
                 <div className="user-info">
                 <p> {users ? `Number of members: ${users.length}` : null}</p>
-                <ul>
+                {/* <ul>
                     {users.map(user => 
                         <li>{user.name} Progress: {user_clubs[0].progress} </li>
                         )}
-                </ul>
+                </ul> */}
                 <button onClick={this.toggleMembers}>Add Members</button>
-                <div className="add-members">
+                {/* <div className="add-members">
                     {this.state.showMembers ? 
                     this.props.users.map(user => 
                         <p>{user.name}</p>
                         )
                         :
                         null}
-                </div>
+                </div> */}
 
                 <p>{meeting ? `Next meeting: ${meeting}` : null}</p>
                 </div>

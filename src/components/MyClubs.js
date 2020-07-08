@@ -13,17 +13,11 @@ class MyClubs extends Component {
             {name: "Romance Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"},
             {name: "Fantasy1 Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
             {name: "Fiction1 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance1 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"},
-            {name: "Fantasy2 Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction3 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance3 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"},
-            {name: "Fantasy4 Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction4 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance4 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
+            {name: "Romance1 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
         ],
         currentClub: {},
         users: [],
-        displayClubList: false,
+        displayClubList: true,
     }
     
 
@@ -80,6 +74,12 @@ class MyClubs extends Component {
         })
     }
 
+    showClubForm = () => {
+        this.setState({
+            displayClubList: !this.state.displayClubList
+        })
+    }
+
     render() { 
         return ( 
             <div className="clubs">
@@ -93,12 +93,13 @@ class MyClubs extends Component {
                         {this.state.currentClub.name ? 
                         <CurrentClub club={this.state.currentClub} deleteClub={this.deleteClub} users={this.state.users}/>
                         : "Select club from the left!"
-                        }
+                    }
                     </div>
                 </div>
                 :
-                <CreateClub />
+                <CreateClub addOneClub={this.addOneClub} users={this.state.users}/>
             }
+            <button className="add-a-club" onClick={this.showClubForm}>{this.state.displayClubList ? "Add a club!" : "Back to club list"}</button>
 
             </div>
          );

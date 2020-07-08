@@ -5,12 +5,29 @@ import ClubForm from "./ClubForm";
 class CreateClub extends Component {
 
     state = {
-        displayForm: true
+        displayForm: true,
+        newClub: {},
+        users: []
     }
 
-    toggleDisplay = () => {
+    componentDidMount(){
         this.setState({
-            displayForm: false
+            users: this.props.users
+        })
+    }
+
+    memberAdded = (newMember) => {
+        let newMemberArray = [...this.state.users]
+        newMemberArray.push(newMember)
+        this.setState({
+            users: newMemberArray
+        })
+    }
+
+    toggleDisplay = (newClubObject) => {
+        this.setState({
+            displayForm: false,
+            newClub: newClubObject
         })
     }
 
@@ -23,7 +40,7 @@ class CreateClub extends Component {
                     {this.state.displayForm ?
                     <ClubForm toggleDisplay={this.toggleDisplay} addOneClub={this.props.addOneClub}/>
                     :
-                    <AddMember />
+                    <AddMember club={this.state.newClub} listOfUsers={this.props.users} users={this.state.users} memberAdded={this.memberAdded}/>
                     }
                 </div>
             </div>

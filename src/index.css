@@ -52,10 +52,6 @@ code {
   margin: auto;
 }
 
-.clubs {
-  border-style: double;
-}
-
 .clubs-content {
   display: flex;
   flex-direction: row;
