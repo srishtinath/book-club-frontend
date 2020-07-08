@@ -12,7 +12,7 @@ class Club extends Component {
                 {this.props.club.name}
                 {this.props.club.users ? 
                 <p>Number of members: {this.props.club.users.length} </p> :
-                null
+                <p>Number of members: 0 </p>
                 }
             </div>
          );

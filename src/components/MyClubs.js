@@ -7,14 +7,7 @@ import CreateClub from './CreateClub';
 class MyClubs extends Component {
     
     state = {
-        clubs: [
-            {name: "Fantasy Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"},
-            {name: "Fantasy1 Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction1 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance1 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
-        ],
+        clubs: [],
         currentClub: {},
         users: [],
         displayClubList: true,
@@ -44,19 +37,15 @@ class MyClubs extends Component {
         })
     }
 
-    handleForm = (e) => {
-        this.setState((prevState) => {
-            return {
-                display: !prevState.display
-            }
-        })
-    }
-
     addOneClub = (clubObject) => {
         let newClubArray = [...this.state.clubs, clubObject]
         this.setState({
             clubs: newClubArray
         })
+    }
+
+    addUserToClub = (user) => {
+        this.setState
     }
 
     deleteClub = (clubObject) => {
