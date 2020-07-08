@@ -26,6 +26,7 @@ code {
   list-style-type: none;
   margin-right: 5%;
   margin-left: auto;
+  width: 20%;
 }
 
 .navbar li {
@@ -51,7 +52,7 @@ code {
   margin: auto;
 }
 
-.clubs {
+.clubs-content {
   display: flex;
   flex-direction: row;
   height: 35em;
@@ -102,6 +103,40 @@ code {
 .club-picture {
   max-width: 100%;
 }
+
+.create-club-container {
+  display: block;
+}
+.create-club-title {
+  width: 100%;
+  font-size: large;
+  margin: auto;
+  text-align: center;
+  border-style: dotted;
+}
+
+.create-club-content {
+  display: flex;
+  height: 500px;
+}
+
+.create-club {
+  width: 50%;
+  border-style: double;
+  display: flex;
+  justify-content: space-around;
+}
+
+.add-members {
+  width: 50%;
+  border-style: dashed;
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 
 .user-info {
   float: left;
