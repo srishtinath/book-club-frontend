@@ -53,10 +53,6 @@ code {
   margin: auto;
 }
 
-.profile {
-  color: blue;
-}
-
 .clubs {
   display: flex;
   flex-direction: row;
@@ -156,4 +152,39 @@ code {
 .search-bar {
   margin-top: 3%;
   margin-right: 3%;
+}
+
+.book-search-input {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    box-sizing: border-box;
+}
+
+.user-photo-container {
+  border: 2px dotted black;
+}
+
+.user-photo {
+  width: 50%;
+  height: 100%;
+  border: 2px dotted black;
+}
+
+.user-name {
+  font-size: 200%;
+  color: black;
+  font-weight: 700;
+  border: 2px dotted black;
+}
+
+.profile-container {
+  text-align: center;
+  border: grey solid 1px;
+  padding: 1rem;
+  width: 15rem;
+  height: 20rem;
+  display: inline-grid;
+  margin: 1rem 2rem;
+  box-shadow: 3px 4px navy;
 }

@@ -23,10 +23,6 @@ class Books extends Component {
             }))
     }
 
-    sendBooks = () => {
-        return this.state.books
-    }
-
     handleSearch = (valueFromChild) => {
         this.setState({
             search: valueFromChild
@@ -50,7 +46,7 @@ class Books extends Component {
         // console.log(this.state.search)
         return ( 
             <div className="books">
-                <div className="search-bar"><BookSearch search={this.state.search} handleSearch={this.handleSearch}/></div>
+                <div><BookSearch search={this.state.search} handleSearch={this.handleSearch}/></div>
                 <BookList books={this.filteredBookSearch()} />
             </div>
          );
