@@ -16,13 +16,6 @@ class CreateClub extends Component {
         })
     }
 
-    memberAdded = (newMember) => {
-        let newMemberArray = [...this.state.users]
-        newMemberArray.push(newMember)
-        this.setState({
-            users: newMemberArray
-        })
-    }
 
     toggleDisplay = (newClubObject) => {
         this.setState({
@@ -37,10 +30,18 @@ class CreateClub extends Component {
                 <div className="create-club-title">Create a Club!</div>
 
                 <div className="create-club-content">
-                    {this.state.displayForm ?
-                    <ClubForm toggleDisplay={this.toggleDisplay} addOneClub={this.props.addOneClub}/>
+                    {this.state.displayForm 
+                    ?
+                    <ClubForm 
+                    toggleDisplay={this.toggleDisplay} 
+                    addOneClub={this.props.addOneClub}/>
                     :
-                    <AddMember club={this.state.newClub} listOfUsers={this.props.users} users={this.state.users} memberAdded={this.memberAdded}/>
+                    <AddMember 
+                    club={this.state.newClub} 
+                    listOfUsers={this.props.users} 
+                    users={this.state.users} 
+                    memberAdded={this.props.memberAdded} 
+                    seeDetailsOfNewClub={this.props.seeDetailsOfNewClub}/>
                     }
                 </div>
             </div>

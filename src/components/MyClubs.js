@@ -7,14 +7,7 @@ import CreateClub from './CreateClub';
 class MyClubs extends Component {
     
     state = {
-        clubs: [
-            {name: "Fantasy Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"},
-            {name: "Fantasy1 Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-            {name: "Fiction1 Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-            {name: "Romance1 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
-        ],
+        clubs: [],
         currentClub: {},
         users: [],
         displayClubList: true,
@@ -80,6 +73,31 @@ class MyClubs extends Component {
         })
     }
 
+    memberAdded = (newMember, club) => {
+        let clubChanged = this.state.clubs.find(clubList => clubList.id === club.id)
+        if (!clubChanged.users){
+            clubChanged.users = []
+        }
+        clubChanged.users.push(newMember)
+        let changedClubArray = this.state.clubs.filter(clubEntry => {
+            if (clubEntry.id === clubChanged.id){
+                return clubChanged
+            } else {
+                return clubEntry
+            }
+        })
+        this.setState({
+            clubs: changedClubArray
+        })
+    }
+
+    seeDetailsOfNewClub = (club) => {
+        this.setState({
+            currentClub: club,
+            displayClubList: true
+        })
+    }
+
     render() { 
         return ( 
             <div className="clubs">
@@ -87,19 +105,34 @@ class MyClubs extends Component {
                 ?
                 <div className="clubs-content">
                     <div className="clubs-container">
-                    <ClubList clubs={this.state.clubs} onClubClick={this.onClubClick}/>
+                    <ClubList 
+                    clubs={this.state.clubs} 
+                    onClubClick={this.onClubClick}/>
                     </div>
                     <div className="selected-club">
                         {this.state.currentClub.name ? 
-                        <CurrentClub club={this.state.currentClub} deleteClub={this.deleteClub} users={this.state.users}/>
+                        <CurrentClub 
+                        club={this.state.currentClub} 
+                        deleteClub={this.deleteClub} 
+                        users={this.state.users}
+                        memberAdded={this.memberAdded} 
+                        />
                         : "Select club from the left!"
                     }
                     </div>
                 </div>
                 :
-                <CreateClub addOneClub={this.addOneClub} users={this.state.users}/>
+                <CreateClub 
+                addOneClub={this.addOneClub} 
+                users={this.state.users} 
+                memberAdded={this.memberAdded} 
+                seeDetailsOfNewClub={this.seeDetailsOfNewClub}/>
             }
-            <button className="add-a-club" onClick={this.showClubForm}>{this.state.displayClubList ? "Add a club!" : "Back to club list"}</button>
+            <button 
+            className="add-a-club" 
+            onClick={this.showClubForm}>
+                {this.state.displayClubList ? "Add a club!" : "Back to club list"}
+                </button>
 
             </div>
          );

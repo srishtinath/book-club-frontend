@@ -12,6 +12,7 @@ class CurrentClub extends Component {
             showMembers: !this.state.showMembers
         })
     }
+    
     handleDelete = () => {
         fetch(`http://localhost:3000/clubs/${this.props.club.id}`, {
             method: "DELETE"
@@ -35,9 +36,40 @@ class CurrentClub extends Component {
         return inactiveBooks
     }
 
+
+    addMember = (user) => {
+        fetch("http://localhost:3000/user_clubs", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            body: JSON.stringify({
+                club_id: this.props.club.id,
+                user_id: user.id,
+                progress: 0
+            })
+        })
+        .then(r => r.json())
+        .then( this.props.memberAdded(user, this.props.club))
+    }
+
+    memberInClub = (userId) => {
+        if (this.props.club.users){
+            let existingUser = this.props.club.users.find(user => user.id === userId)
+            if (existingUser) {
+                return false
+            } else {
+                return true
+            }
+        } else {
+            return true
+        }
+    }
+    
     render() { 
         let { name, image, completed, meeting, users, books, user_clubs } = this.props.club
-
+        console.log(this.props.users)
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>
@@ -60,21 +92,31 @@ class CurrentClub extends Component {
 
                 <div className="user-info">
                 <p> {users ? `Number of members: ${users.length}` : null}</p>
-                {/* <ul>
+                <ul>
                     {users.map(user => 
                         <li>{user.name} Progress: {user_clubs[0].progress} </li>
                         )}
-                </ul> */}
+                </ul>
                 <button onClick={this.toggleMembers}>Add Members</button>
-                {/* <div className="add-members">
-                    {this.state.showMembers ? 
-                    this.props.users.map(user => 
-                        <p>{user.name}</p>
-                        )
-                        :
-                        null}
-                </div> */}
+                    {this.state.showMembers 
+                    ? 
+                        <div className="add-members">
+                            <ul>
+                            {this.props.users.map(user => 
+                            <li>{user.name}
+                            <button className="add-member-btn" 
+                            onClick={() => this.addMember(user)}
+                            disabled={!this.memberInClub(user.id)}> 
+                            { this.memberInClub(user.id) ? "Add!" : "Added to club" }
+                            </button>
+                            </li>
+                            )}
+                            </ul>
+                        </div>
 
+                    :
+                        null
+                    }
                 <p>{meeting ? `Next meeting: ${meeting}` : null}</p>
                 </div>
                 <div className="delete-club">
