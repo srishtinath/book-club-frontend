@@ -7,22 +7,16 @@ class Club extends Component {
     }
 
     render() { 
-        let { name, members } = this.props.club
         return ( 
             <div className="club-card" onClick={this.handleClick}>
-                {name}
-                <p>Number of members: {members} </p>
-                {/* <p>Currently Reading:  {currentlyReading}</p> */}
-                {/* <p>Next meeting: {nextMeeting} </p> */}
+                {this.props.club.name}
+                {this.props.club.users ? 
+                <p>Number of members: {this.props.club.users.length} </p> :
+                null
+                }
             </div>
          );
     }
 }
  
 export default Club;
-
-// clubs: [
-//     {name: "Fantasy Book Club", members: 8, currentlyReading: "Pride and Prejudice", nextMeeting: "09/27/2020"},
-//     {name: "Fantasy Book Club", members: 12, currentlyReading: "Sense and Sensibility", nextMeeting: "12/06/2020"},
-//     {name: "Fantasy Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
-// ],
