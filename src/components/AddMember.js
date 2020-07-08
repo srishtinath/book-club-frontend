@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom"; 
+
 
 class AddMember extends Component {
     
@@ -17,7 +19,7 @@ class AddMember extends Component {
             })
         })
         .then(r => r.json())
-        .then( this.props.memberAdded(user))
+        .then( this.props.memberAdded(user, this.props.club))
     }
 
     memberInClub = (userId) => {
@@ -34,8 +36,14 @@ class AddMember extends Component {
         
     }
 
+    seeDetailsOfNewClub = () => {
+        this.props.seeDetailsOfNewClub(this.props.club)
+    }
+    
+
+
     render() { 
-        let { club, users, listOfUsers } = this.props
+        let { club, listOfUsers } = this.props
         return ( 
             <div>
             <p>Add Members to { club.name }!</p>
@@ -50,6 +58,7 @@ class AddMember extends Component {
                     </li>
                 )}
             </ul>
+            <NavLink to="/clubs"><button onClick={this.seeDetailsOfNewClub}>See my new club!</button></NavLink>
             </div>
          );
     }

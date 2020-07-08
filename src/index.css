@@ -130,7 +130,7 @@ code {
 .add-members {
   width: 50%;
   border-style: dashed;
-  display: none;
+  /* display: none; */
 }
 
 .show {
