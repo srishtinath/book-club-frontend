@@ -36,7 +36,6 @@ class CurrentClub extends Component {
 
     render() { 
         let { name, image, completed, meeting, users, books } = this.props.club
-
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>
@@ -46,7 +45,7 @@ class CurrentClub extends Component {
                 {/* Members: Progress on left below picture */}
                 
                 <div className="book-info">
-                    <h4>Current book: {this.findActiveBook(books).title}</h4>
+                    <h4>Current book: {this.findActiveBook().title}</h4>
                         
                     <h4 align="center">Past books read</h4>
                     <ul>
