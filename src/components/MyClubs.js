@@ -22,8 +22,8 @@ class MyClubs extends Component {
             {name: "Romance4 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
         ],
         currentClub: {},
-        display: false,
-        users: []
+        users: [],
+        displayClubList: false,
     }
     
 
@@ -83,29 +83,23 @@ class MyClubs extends Component {
     render() { 
         return ( 
             <div className="clubs">
-                <div className="clubs-container">
+                {this.state.displayClubList 
+                ?
+                <div className="clubs-content">
+                    <div className="clubs-container">
                     <ClubList clubs={this.state.clubs} onClubClick={this.onClubClick}/>
+                    </div>
+                    <div className="selected-club">
+                        {this.state.currentClub.name ? 
+                        <CurrentClub club={this.state.currentClub} deleteClub={this.deleteClub} users={this.state.users}/>
+                        : "Select club from the left!"
+                        }
+                    </div>
                 </div>
-                <div className="selected-club">
-                <div className="add-club">
-                    <button onClick={this.handleForm} >Create a new Club!</button>
+                :
+                <CreateClub />
+            }
 
-                    { this.state.display
-                    ?
-                    <CreateClub addOneClub={this.addOneClub}/>
-                    :
-                    null
-                }
-                </div>
-                    {this.state.currentClub.name ? 
-                    <CurrentClub club={this.state.currentClub} deleteClub={this.deleteClub} users={this.state.users}/>
-                    : "Select club from the left!"
-                    }
-                </div>
-
-
-                
-    
             </div>
          );
     }

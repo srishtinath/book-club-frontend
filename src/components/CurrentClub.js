@@ -35,7 +35,7 @@ class CurrentClub extends Component {
     }
 
     render() { 
-        let { name, image, completed, meeting, users, books } = this.props.club
+        let { name, image, completed, meeting, users, books, user_clubs } = this.props.club
 
         return ( 
             <div className="current-club-container">
@@ -61,7 +61,7 @@ class CurrentClub extends Component {
                 <p> {users ? `Number of members: ${users.length}` : null}</p>
                 <ul>
                     {users.map(user => 
-                        <li>{user.name} Progress: </li>
+                        <li>{user.name} Progress: {user_clubs[0].progress} </li>
                         )}
                 </ul>
                 <button onClick={this.toggleMembers}>Add Members</button>
