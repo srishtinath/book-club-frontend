@@ -15,31 +15,29 @@ code {
 
 .navbar {
   background-color: rgb(42, 144, 174);
-  padding: 10px 0px;
+  padding: 20px 0px;
   margin-bottom: 3px;
   height: 100%;
   display: flex;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .navbar-ul {
   list-style-type: none;
-  margin-right: 10%;
+  margin-right: 5%;
   margin-left: auto;
 }
 
 .navbar li {
   display: inline;
-  padding: 3%;
+  padding-left: 5%;
 }
 
 .logo-container {
   position: absolute;
-  max-width: 20%;
-  bottom: 0%;
-  right: 0%;
-  padding: 1%;
-  background-color: rgb(214, 216, 215);
+  max-width: 7%;
+  top: 1%;
+  left: 1%;
   z-index: 10;
 }
 
@@ -62,7 +60,7 @@ code {
 .clubs-container {
  position: relative;
  width: 30%;
- height: 90%;
+ height: 100%;
  margin-right: 3%;
  overflow: auto;
 }
@@ -85,11 +83,55 @@ code {
   width: 70%;
 }
 
-/* .add-club {
-  position: absolute;
-  bottom: 2em;
-  left: 45%;
-} */
+.current-club-container {
+  padding: 3px;
+  width: 99%;
+  /* display: flex; */
+}
+
+.club-title {
+  width: 100%;
+  text-align: center;
+}
+
+.club-info {
+  float: left;
+  width: 40%;
+}
+
+.club-picture {
+  max-width: 100%;
+}
+
+.user-info {
+  float: left;
+  width: 100%;
+}
+
+.book-info {
+  float: right;
+  width: 60%;
+  display: block;
+}
+
+.add-members {
+  height: 100px;
+  width: 50%;
+  overflow: auto;
+  text-align: center;
+}
+
+.delete-club {
+  float: left;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.add-club {
+  text-align: center;
+  display: block;
+}
 
 .books-container {
   display: flex;

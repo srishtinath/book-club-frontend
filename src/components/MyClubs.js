@@ -22,9 +22,27 @@ class MyClubs extends Component {
             {name: "Romance4 Book Club", members: 4, currentlyReading: "Mansfield Park", nextMeeting: "11/18/2020"}
         ],
         currentClub: {},
-        display: false
+        display: false,
+        users: []
     }
     
+
+    componentDidMount(){
+        fetch("http://localhost:3000/clubs")
+        .then(r => r.json())
+        .then(fetchedClubs => {
+            this.setState({
+                clubs: fetchedClubs
+            })
+        })
+        fetch("http://localhost:3000/users")
+        .then(r => r.json())
+        .then(fetchedUsers => {
+            this.setState({
+                users: fetchedUsers
+            })
+        })
+    }
 
     onClubClick = (selectedClubObject) => {
         this.setState({
@@ -40,6 +58,28 @@ class MyClubs extends Component {
         })
     }
 
+    addOneClub = (clubObject) => {
+        let newClubArray = [...this.state.clubs, clubObject]
+        this.setState({
+            clubs: newClubArray
+        })
+    }
+
+    deleteClub = (clubObject) => {
+        let deletedClub = this.state.clubs.find(club => club.id === clubObject.id)
+        let newClubArray = this.state.clubs.filter(club => {
+            if (club.id === deletedClub.id){
+                return null 
+            } else {
+                return club
+            }
+        })
+        this.setState({
+            clubs: newClubArray,
+            currentClub: {}
+        })
+    }
+
     render() { 
         return ( 
             <div className="clubs">
@@ -47,21 +87,24 @@ class MyClubs extends Component {
                     <ClubList clubs={this.state.clubs} onClubClick={this.onClubClick}/>
                 </div>
                 <div className="selected-club">
-                    <CurrentClub club={this.state.currentClub}/>
-                </div>
-
-                {/* added form toggle here */}
-
-                <div>
-                    <button onClick={this.handleForm}>Create a new Club!</button>
+                <div className="add-club">
+                    <button onClick={this.handleForm} >Create a new Club!</button>
 
                     { this.state.display
                     ?
-                    <CreateClub />
+                    <CreateClub addOneClub={this.addOneClub}/>
                     :
                     null
                 }
                 </div>
+                    {this.state.currentClub.name ? 
+                    <CurrentClub club={this.state.currentClub} deleteClub={this.deleteClub} users={this.state.users}/>
+                    : "Select club from the left!"
+                    }
+                </div>
+
+
+                
     
             </div>
          );
