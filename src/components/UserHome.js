@@ -26,10 +26,6 @@ class UserHome extends Component {
     }
 
     render() { 
-<<<<<<< HEAD
-=======
-        // console.log(this.state.users)
->>>>>>> 30888d8f81025e4528cd0a5a603ddc60167ac057
         return ( 
             <div className="profile">
                 <Profile users={this.state.users}/>

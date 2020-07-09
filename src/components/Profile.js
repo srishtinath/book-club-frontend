@@ -7,9 +7,7 @@ class Profile extends Component {
             
         }
     }
-
-
-<<<<<<< HEAD
+    
     //WHY cant I access this.props.users[0].name without doing a ternary to see if it exists first
     //GET HELPPP
     //continure with progress!!! 
@@ -48,25 +46,6 @@ class Profile extends Component {
                     </ul>
                     </div>
                 </div>
-=======
-        // let {name, image}= this.props.user
-        let {name}= this.props.user
-
-        return ( 
-            <div onClick={this.handle} className="profile-container">
-            <p className="user-name">
-                {name}
-            </p>
-            <div className="user-photo-container">
-                <img className="user-photo" src="https://i.pinimg.com/originals/37/f2/f2/37f2f2ce0194098045d3df6dfd2df67b.jpg" alt={name}/>
-            </div>
-            <ul>
-                Clubs
-                {this.props.user.clubs.map(club => 
-                     <li>{club.name}</li>
-                )}
-            </ul>
->>>>>>> 30888d8f81025e4528cd0a5a603ddc60167ac057
             </div>
          );
     }
