@@ -29,6 +29,7 @@ class ChooseBook extends Component {
     }
 
     handleChange = (e) => {
+        console.log(e.target.parentNode)
         this.setState({
             chosenBookId: e.target.parentNode.id
         })
@@ -40,7 +41,7 @@ class ChooseBook extends Component {
             <form>
                 <p>Choose Book!</p>
                     {this.props.books.map(bookObj => 
-                        <span key={bookObj.id}>
+                        <span key={bookObj.id} id={bookObj.id}>
                             <input type="radio" name="chosen-book" value={this.state.chosenBookId} onChange={this.handleChange}></input>
                             <label>{bookObj.title}</label>
                         </span>

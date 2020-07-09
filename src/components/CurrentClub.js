@@ -102,10 +102,15 @@ class CurrentClub extends Component {
     }
 
     findProgress = (user) => {
+        console.log(user.id)
+        console.log(this.props.club.user_clubs)
         let userClubs = this.props.club.user_clubs
         if (userClubs){
             let userClubEntry = userClubs.find(entry => entry.user_id === user.id)
-            return userClubEntry.progress
+            if (userClubEntry){
+                console.log(userClubEntry.progress)
+                return userClubEntry.progress
+            }
         } else {
             return 0
         }
@@ -118,8 +123,6 @@ class CurrentClub extends Component {
     }
 
     addActiveBook = (bookFromChild) => {
-        // post new book_club from user input
-            // --> done in child
         this.setState({
             activeBook: bookFromChild
         })
