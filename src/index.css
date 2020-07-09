@@ -104,6 +104,12 @@ code {
   max-width: 100%;
 }
 
+.current-reading {
+  max-width: 10%;
+  float: left;
+  margin-right: 5%;
+}
+
 .create-club-container {
   display: block;
 }
@@ -127,10 +133,46 @@ code {
   justify-content: space-around;
 }
 
-.add-members {
-  width: 50%;
-  border-style: dashed;
-  /* display: none; */
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 30%;
+  top: 91px;
+  width: 70%; /* Full width */
+  height: 100%; /* Full height */
+  background-color: rgba(42, 144, 174, 0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto; 
+  padding: 5px;
+  border: 1px solid #888;
+  width: 70%; 
+}
+
+.modal-text {
+  width: 90%;
+  height: 75%;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: small;
+  color: black;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .show {
@@ -139,14 +181,14 @@ code {
 
 
 .user-info {
-  float: left;
-  width: 100%;
+  float: right;
+  width: 50%;
 }
 
 .book-info {
-  float: right;
-  width: 60%;
-  display: block;
+  float: left;
+  width: 100%;
+  /* display: fl; */
 }
 
 .add-members {
@@ -178,6 +220,7 @@ code {
 .books {
   text-align: right;
 }
+
 .book-card {
   width: 28%;
   margin: 1%;

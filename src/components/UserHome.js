@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserContainer from './UserContainer';
-import CurrentBook from "./CurrentBook";
+// import CurrentBook from "./CurrentBook";
 
 class UserHome extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class UserHome extends Component {
     }
 
     render() { 
-        console.log(this.state.users)
+        // console.log(this.state.users)
         return ( 
             <div className="profile">
                 <UserContainer users={this.state.users}/>

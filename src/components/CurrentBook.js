@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class CurrentBook extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-    render() { 
-        return ( 
-            "CurrentBook!"
-         );
-    }
+const CurrentBook = (props) => {
+    return ( 
+        <div>
+            <h4>Currently reading: </h4> <p><b>{props.activeBook.title}</b></p>
+            <img src={props.activeBook.image} alt={props.activeBook.title} className="current-reading"/>
+            <p>{props.activeBook.description}</p>
+        </div>
+     );
 }
  
 export default CurrentBook;

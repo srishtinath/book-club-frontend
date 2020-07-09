@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
+import CurrentBook from './CurrentBook';
+import ChooseBook from './ChooseBook';
 
 class CurrentClub extends Component {
     
     state = {
         showMembers: false,
-        users: []
+        users: [],
+        books: [],
+        activeBook: {}
+    }
+
+    componentDidMount(){
+        fetch("http://localhost:3000/books")
+        .then(r => r.json())
+        .then(fetchedBooks => {
+            this.setState({
+                books: fetchedBooks
+            })
+        })
+        this.findActiveBook(this.props.club)
+    }
+
+    componentDidUpdate(prevProps){
+        if (this.props.club !== prevProps.club){
+            this.findActiveBook(this.props.club)
+        }
+        
     }
 
     toggleMembers = () => {
@@ -23,17 +45,29 @@ class CurrentClub extends Component {
         })
     }
 
-    findActiveBook = () => {
-        console.log(this.props.club.book_clubs)
-        let activeBookEntry = this.props.club.book_clubs.find(entry => entry["active?"] === true)
-        let activeBook = this.props.club.books.find(book => book.id === activeBookEntry.book_id)
-        return activeBook
+    findActiveBook = (club) => {
+        // console.log(this.props.club.book_clubs)
+        if (club.book_clubs){
+            let activeBookEntry = club.book_clubs.find(entry => entry["active?"] === true)
+            let activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
+            this.setState({
+                activeBook: activeBookFound
+            })
+        } else {
+            this.setState({
+                activeBook: {}
+            })
+        }
     }
 
     findPastBooks = () => {
-        let activeBookEntry = this.props.club.book_clubs.find(entry => entry["active?"] === true)
-        let inactiveBooks = this.props.club.books.filter(book => book.id !== activeBookEntry.book_id)
-        return inactiveBooks
+        if (this.props.club.book_clubs){
+            let activeBookEntry = this.props.club.book_clubs.find(entry => entry["active?"] === true)
+            let inactiveBooks = this.props.club.books.filter(book => book.id !== activeBookEntry.book_id)
+            return inactiveBooks
+        } else {
+            return null
+        }
     }
 
 
@@ -66,61 +100,100 @@ class CurrentClub extends Component {
             return true
         }
     }
+
+    findProgress = (user) => {
+        let userClubs = this.props.club.user_clubs
+        if (userClubs){
+            let userClubEntry = userClubs.find(entry => entry.user_id === user.id)
+            return userClubEntry.progress
+        } else {
+            return 0
+        }
+    }
     
+    closeMembers = () => {
+        this.setState({
+            showMembers: false
+        })
+    }
+
+    addActiveBook = (bookFromChild) => {
+        // post new book_club from user input
+            // --> done in child
+        this.setState({
+            activeBook: bookFromChild
+        })
+    }
+
     render() { 
-        let { name, image, completed, meeting, users, books, user_clubs } = this.props.club
-        console.log(this.props.users)
+        let { name, image, meeting, users } = this.props.club
+        // console.log(this.props.users)
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>
                 <div className="club-info">
                 <img src={image} alt={name} className="club-picture"/>
                 </div>
-                {/* Members: Progress on left below picture */}
                 
-                {/* <div className="book-info">
-                    <h4>Current book: {this.findActiveBook() ? this.findActiveBook().title : null}</h4>
-                        
-                    <h4 align="center">Past books read</h4>
-                    <ul>
-                    {this.findPastBooks().map(book =>
-                        <li>{book ? book.title : null}</li>
-                        )}
-                        </ul>
-                        <br></br><button>Choose Book</button>
-                </div> */}
 
                 <div className="user-info">
-                <p> {users ? `Number of members: ${users.length}` : null}</p>
-                <ul>
-                    {users.map(user => 
-                        <li>{user.name} Progress: {user_clubs[0].progress} </li>
-                        )}
-                </ul>
-                <button onClick={this.toggleMembers}>Add Members</button>
+                    <p> {users ? `Number of members: ${users.length}` : null}</p>
+                    <ul>
+                        {users.map(user => 
+                            <li key={user.id}>{user.name} Progress: {this.findProgress(user)} </li>
+                            )}
+                    </ul>
+                    <button onClick={this.toggleMembers}>Add Members</button>
+                
                     {this.state.showMembers 
                     ? 
-                        <div className="add-members">
-                            <ul>
-                            {this.props.users.map(user => 
-                            <li>{user.name}
-                            <button className="add-member-btn" 
-                            onClick={() => this.addMember(user)}
-                            disabled={!this.memberInClub(user.id)}> 
-                            { this.memberInClub(user.id) ? "Add!" : "Added to club" }
-                            </button>
-                            </li>
-                            )}
-                            </ul>
+                    <div className="modal">
+                        <div className="modal-content">
+                            <div className="modal-text">
+                                <span className="close" onClick={this.closeMembers}>×</span>
+                                <ul>
+                                {this.props.users.map(user => 
+                                <li>{user.name}
+                                <button className="add-member-btn" 
+                                onClick={() => this.addMember(user)}
+                                disabled={!this.memberInClub(user.id)}> 
+                                { this.memberInClub(user.id) ? "Add!" : "Added to club" }
+                                </button>
+                                </li>
+                                )}
+                                </ul>
+                            </div>
                         </div>
-
+                    </div>
                     :
                         null
                     }
-                <p>{meeting ? `Next meeting: ${meeting}` : null}</p>
+                        
+                    <p>{meeting ? `Next meeting: ${meeting}` : null}</p>
+                    <div className="delete-club">
+                    <button onClick={this.handleDelete}>Delete Club</button>
+                    </div>
                 </div>
-                <div className="delete-club">
-                <button onClick={this.handleDelete}>Delete Club</button>
+
+                <div className="book-info">
+                    {/* add ternary --> if book chosen, then show reading, otherwise show form to submit book */}
+                    { this.state.activeBook ?
+                        <CurrentBook activeBook={this.state.activeBook}/>
+                        :
+                        < ChooseBook books={this.state.books} club={this.props.club} addActiveBook={this.addActiveBook}/>
+                    }
+                    
+                    <h4 align="center">Past books read</h4>
+                    {this.findPastBooks() ? 
+                    <ul>
+                        {this.findPastBooks().map(book =>
+                            <li key={book.id}>{book ? book.title : null}</li>
+                        )}
+                    </ul>
+                     :
+                     null
+                     }
+                        
                 </div>
             </div>
          );

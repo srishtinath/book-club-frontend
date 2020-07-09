@@ -49,7 +49,7 @@ class AddMember extends Component {
             <p>Add Members to { club.name }!</p>
             <ul>
                 {listOfUsers.map(user => 
-                    <li>{user.name}
+                    <li key={user.id}>{user.name}
                     <button className="add-member-btn" 
                     onClick={() => this.addMember(user)}
                     disabled={!this.memberInClub(user.id)}> 
