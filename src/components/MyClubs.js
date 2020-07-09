@@ -36,14 +36,6 @@ class MyClubs extends Component {
         })
     }
 
-    handleForm = (e) => {
-        this.setState((prevState) => {
-            return {
-                display: !prevState.display
-            }
-        })
-    }
-
     addOneClub = (clubObject) => {
         let newClubArray = [...this.state.clubs, clubObject]
         this.setState({
@@ -86,7 +78,8 @@ class MyClubs extends Component {
             }
         })
         this.setState({
-            clubs: changedClubArray
+            clubs: changedClubArray,
+            club: club
         })
     }
 

@@ -17,9 +17,9 @@ class CurrentClub extends Component {
         .then(fetchedBooks => {
             this.setState({
                 books: fetchedBooks
-            })
+            }, this.findActiveBook(this.props.club))
         })
-        this.findActiveBook(this.props.club)
+        
     }
 
     componentDidUpdate(prevProps){
@@ -54,9 +54,7 @@ class CurrentClub extends Component {
                 activeBook: activeBookFound
             })
         } else {
-            this.setState({
-                activeBook: {}
-            })
+            return null
         }
     }
 
@@ -102,13 +100,10 @@ class CurrentClub extends Component {
     }
 
     findProgress = (user) => {
-        console.log(user.id)
-        console.log(this.props.club.user_clubs)
         let userClubs = this.props.club.user_clubs
         if (userClubs){
             let userClubEntry = userClubs.find(entry => entry.user_id === user.id)
             if (userClubEntry){
-                console.log(userClubEntry.progress)
                 return userClubEntry.progress
             }
         } else {
@@ -130,7 +125,7 @@ class CurrentClub extends Component {
 
     render() { 
         let { name, image, meeting, users } = this.props.club
-        // console.log(this.props.users)
+        console.log(this.props.club.users)
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>
@@ -143,7 +138,7 @@ class CurrentClub extends Component {
                     <p> {users ? `Number of members: ${users.length}` : null}</p>
                     <ul>
                         {users.map(user => 
-                            <li key={user.id}>{user.name} Progress: {this.findProgress(user)} </li>
+                            <li key={user.id + Math.random()}>{user.name} Progress: {this.findProgress(user)} </li>
                             )}
                     </ul>
                     <button onClick={this.toggleMembers}>Add Members</button>
