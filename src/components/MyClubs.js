@@ -44,10 +44,6 @@ class MyClubs extends Component {
         })
     }
 
-    addUserToClub = (user) => {
-        this.setState
-    }
-
     deleteClub = (clubObject) => {
         let deletedClub = this.state.clubs.find(club => club.id === clubObject.id)
         let newClubArray = this.state.clubs.filter(club => {

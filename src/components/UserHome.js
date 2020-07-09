@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserContainer from './UserContainer';
+import Profile from './Profile';
 import CurrentBook from "./CurrentBook";
 
 class UserHome extends Component {
@@ -21,10 +21,9 @@ class UserHome extends Component {
     }
 
     render() { 
-        console.log(this.state.users)
         return ( 
             <div className="profile">
-                <UserContainer users={this.state.users}/>
+                <Profile users={this.state.users}/>
                 {/* <CurrentBook /> */}
             </div>
          );

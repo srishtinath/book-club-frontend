@@ -1,14 +1,14 @@
-import React from 'react';
-import Profile from './Profile'
+// import React from 'react';
+// import Profile from './Profile'
 
-const UserContainer = (props) => {
-    return ( 
-        <div>
-        { props.users.map(user => 
-            <Profile key={user.id} user={user} />
-        )}
-        </div>
-     );
-}
+// const UserContainer = (props) => {
+//     return ( 
+//         <div>
+//         { props.users.map(user => 
+//             <Profile key={user.id} user={user} />
+//         )}
+//         </div>
+//      );
+// }
  
-export default UserContainer;
+// export default UserContainer;
