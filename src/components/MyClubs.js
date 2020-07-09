@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ClubList from "./ClubList";
 import CurrentClub from "./CurrentClub";
-import { NavLink } from 'react-router-dom';
 import CreateClub from './CreateClub';
 
 class MyClubs extends Component {
@@ -97,9 +96,9 @@ class MyClubs extends Component {
                 ?
                 <div className="clubs-content">
                     <div className="clubs-container">
-                    <ClubList 
-                    clubs={this.state.clubs} 
-                    onClubClick={this.onClubClick}/>
+                        <ClubList 
+                        clubs={this.state.clubs} 
+                        onClubClick={this.onClubClick}/>
                     </div>
                     <div className="selected-club">
                         {this.state.currentClub.name ? 
@@ -119,10 +118,11 @@ class MyClubs extends Component {
                 users={this.state.users} 
                 memberAdded={this.memberAdded} 
                 seeDetailsOfNewClub={this.seeDetailsOfNewClub}/>
-            }
+                }
+            
             <button 
-            className="add-a-club" 
-            onClick={this.showClubForm}>
+                className="add-a-club" 
+                onClick={this.showClubForm}>
                 {this.state.displayClubList ? "Add a club!" : "Back to club list"}
                 </button>
 
