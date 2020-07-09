@@ -303,7 +303,7 @@ code {
   text-align: center;
   border: grey solid 1px;
   padding: 1rem;
-  width: 25rem;
+  width: 30%;
   height: 20rem;
   display: inline-grid;
   margin: 1rem 2rem;
@@ -315,14 +315,18 @@ code {
 }
 
 .user-club-list-container {
-  padding: 10%;
+  display: flex;
+  padding: 5%;
   border-style: dotted;
-  margin: 50px 0px;
+  margin: 10px 2px;
   /* text-align: center;
   padding: 50%;
   width: 100%;
   overflow: hidden; */
-  width: 100%;
+  width: 80%;
+  float: right;
+  overflow: auto;
+  height: 50%;
 }
 
 .user-club-list {
@@ -331,13 +335,13 @@ code {
 
 .top-container {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* text-align: center; */
-  flex-direction: column;
+  flex-direction: row;
   border-style: dotted;
+  height: 500px;
 }
 
 li > p:first-child{
   color: blue;
-
 }
