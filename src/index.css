@@ -282,66 +282,96 @@ code {
 }
 
 .user-photo-container {
-  border: 2px dotted black;
+  /* border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-photo {
-  width: 50%;
-  height: 100%;
-  border: 2px dotted black;
+  width: 75%;
+  height: 200px;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 .user-name {
   font-size: 200%;
   color: black;
   font-weight: 700;
-  border: 2px dotted black;
+  /* border: 2px dotted black; */
   height: 40px;
+  margin: 0px;
+  text-align: center;
 }
 
 .profile-container {
-  text-align: center;
-  border: grey solid 1px;
-  padding: 1rem;
-  width: 30%;
-  height: 20rem;
-  display: inline-grid;
-  margin: 1rem 2rem;
-  box-shadow: 3px 4px navy;
-  background-color: white;
-  /* display: flex;
+  /* text-align: center; */
   justify-content: center;
-  width: 50%; */
+  /* border: grey solid 1px; */
+  /* border-style: dotted; */
+  /* padding: 5%; */
+  width: 20%;
+  height: 60%;
+  display: inline-grid;
+  margin: 40px;
+  /* box-shadow: 3px 4px navy; */
+  /* background-color: white; */
 }
 
 .user-club-list-container {
-  display: flex;
-  padding: 5%;
-  border-style: dotted;
-  margin: 10px 2px;
-  /* text-align: center;
-  padding: 50%;
+  /* justify-content: center; */
+  /* display: flex; */
+  /* padding: 10%; */
+  /* border-style: dotted; */
+  margin: 20px;
   width: 100%;
-  overflow: hidden; */
-  width: 80%;
-  float: right;
+  /* float: right; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-row: 3;
   overflow: auto;
-  height: 50%;
+  height: 80%;
+  /* background-color: white; */
 }
 
-.user-club-list {
+/* .user-club-list{ */
   /* padding: 5% */
-}
+  /* display: inline-block; */
+  /* display: inline;
+  float: left; */
+/* } */
 
 .top-container {
   display: flex;
   /* justify-content: space-around; */
   /* text-align: center; */
   flex-direction: row;
-  border-style: dotted;
+  /* flex-wrap: wrap; */
+  /* border-style: dotted; */
   height: 500px;
 }
 
-li > p:first-child{
-  color: blue;
+
+.update-progress-form > input:first-child {
+  width: 100px; 
 }
+
+.user-club-div {
+  /* display: inline-grid; */
+
+  padding: 20px;
+}
+
+.user-club-div > img {
+  height: 100px;
+  /* width: 100px; */
+}
+
+
+/* .profile {
+  border-style: dotted;
+} */

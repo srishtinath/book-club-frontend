@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
-import CurrentBook from "./CurrentBook";
+import UserBooks from "./UserBooks";
 
 class UserHome extends Component {
     constructor(props) {
@@ -24,7 +24,7 @@ class UserHome extends Component {
         return ( 
             <div className="profile">
                 <Profile users={this.state.users}/>
-                {/* <CurrentBook /> */}
+                <UserBooks users={this.state.users}/>
             </div>
          );
     }
