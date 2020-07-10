@@ -20,9 +20,21 @@ class NavBar extends Component {
             <div className="navbar">
                 {/* Welcome! */}
                 <ul className="navbar-ul">
-                    <NavLink to="/home"><li>Home</li></NavLink>
-                    <NavLink to="/clubs"><li>Clubs</li></NavLink>
-                    <NavLink to="/books"><li>Books</li></NavLink>
+                    {this.props.token ?
+                    <>
+                    <NavLink to="/home" user={this.props.user}><li>Home</li></NavLink>
+                    <NavLink to="/clubs" user={this.props.user}><li>Clubs</li></NavLink>
+                    <NavLink to="/books" user={this.props.user}><li>Books</li></NavLink>
+                    <li><button onClick={this.props.logoutUser}>Logout</button></li>
+                    </>
+                :
+                    <>
+                    <NavLink to="/login"><li>Login</li></NavLink>
+                    <NavLink to="/register"><li>Register</li></NavLink>
+                    </>
+                }
+                    
+                    
                 </ul>
                 <div className="logo-container">
                 <img src={this.state.toggleImage ? WormPic5 : WormPic4} onClick={this.imageClick} className="logo" alt="logo"/>

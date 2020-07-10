@@ -7,6 +7,10 @@ class Book extends Component {
         onWishlist: false
     }
 
+    componentDidMount(){
+            this.checkOnWishlist()
+    }
+
     componentDidUpdate(prevProps){
         if (this.props !== prevProps){
             this.checkOnWishlist()
@@ -18,7 +22,8 @@ class Book extends Component {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "accept": "application/json"
+                "accept": "application/json",
+                "Authorization": localStorage.token
             },
             body: JSON.stringify({
                 book_id: this.props.book.id,
@@ -27,8 +32,9 @@ class Book extends Component {
             })
         })
         .then( r => r.json())
-        .then(newBook => {
-            this.props.addToWishlist(newBook)
+        .then(newEntry => {
+            let newBookId = newEntry.book_id
+            this.props.addToWishlist(newBookId)
         })
     }
 

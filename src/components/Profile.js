@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import UserClub from './UserClub'
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-       
-        }
+    
+    state = {
+        user: {}
+    }
+
+    componentDidMount(){
+        this.setState({
+            user: this.props.user
+        })
     }
 
     render() { 

@@ -3,20 +3,14 @@ import Profile from './Profile';
 import UserBooks from "./UserBooks";
 
 class UserHome extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            users: []
+ 
+        state = { 
+            user: {}
          }
-    }
 
     componentDidMount() {
-        fetch("http://localhost:3000/users")
-        .then(resp => resp.json())
-        .then((userArray) => {
-            this.setState({
-                users: userArray
-            })
+        this.setState({
+            user: this.props.user
         })
     }
 
