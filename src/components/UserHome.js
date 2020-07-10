@@ -3,20 +3,14 @@ import UserContainer from './UserContainer';
 // import CurrentBook from "./CurrentBook";
 
 class UserHome extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            users: []
+ 
+        state = { 
+            user: {}
          }
-    }
 
     componentDidMount() {
-        fetch("http://localhost:3000/users")
-        .then(resp => resp.json())
-        .then((userArray) => {
-            this.setState({
-                users: userArray
-            })
+        this.setState({
+            user: this.props.user
         })
     }
 
@@ -24,7 +18,8 @@ class UserHome extends Component {
         // console.log(this.state.users)
         return ( 
             <div className="profile">
-                <UserContainer users={this.state.users}/>
+                <UserContainer user={this.state.user}/>
+                <p>User Home</p>
                 {/* <CurrentBook /> */}
             </div>
          );

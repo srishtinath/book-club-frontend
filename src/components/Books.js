@@ -15,18 +15,12 @@ class Books extends Component {
        .then(r => r.json())
        .then(fetchedBooks => 
         this.setState({
-            books: fetchedBooks
-        }, this.fetchUsers))
+            books: fetchedBooks,
+            user: this.props.user
+        })
+       )
     }
 
-    fetchUsers = () => {
-        fetch("http://localhost:3000/users")
-        .then(r => r.json())
-        .then(fetchedUsers => 
-         this.setState({
-             user: fetchedUsers[1]
-         }))
-    }
 
     handleSearch = (valueFromChild) => {
         this.setState({
@@ -47,13 +41,14 @@ class Books extends Component {
         return filteredBookArray
     }
 
-    addToWishlist = (newBook) => {
+    addToWishlist = (newBookId) => {
         let currentUser = this.state.user
         let userBooks = currentUser.books
+        let foundBook = this.state.books.find(book => book.id === newBookId)
         if (!userBooks){
             userBooks = []
         }
-        userBooks.push(newBook)
+        userBooks.push(foundBook)
         currentUser.books = userBooks
         this.setState({
             user: currentUser
@@ -64,7 +59,7 @@ class Books extends Component {
         return ( 
             <div className="books">
                 <div><BookSearch search={this.state.search} handleSearch={this.handleSearch}/></div>
-                <BookList books={this.filteredBookSearch()} user={this.state.user} addToWishlist={this.addToWishlist}/>
+                <BookList books={this.filteredBookSearch()} user={this.props.user} addToWishlist={this.addToWishlist}/>
             </div>
          );
     }

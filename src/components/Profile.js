@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
+    
+    state = {
+        user: {}
+    }
+
+    componentDidMount(){
+        this.setState({
+            user: this.props.user
+        })
     }
 
     render() { 
 
         // let {name, image}= this.props.user
-        let {name}= this.props.user
+        let {name}= this.state.user
 
         return ( 
             <div onClick={this.handle} className="profile-container">
@@ -21,9 +27,9 @@ class Profile extends Component {
             </div>
             <ul>
                 Clubs
-                {this.props.user.clubs.map(club => 
+                {/* {this.props.user.clubs.map(club => 
                      <li>{club.name}</li>
-                )}
+                )} */}
             </ul>
             </div>
          );
