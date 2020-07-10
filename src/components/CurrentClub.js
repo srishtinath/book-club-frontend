@@ -8,7 +8,8 @@ class CurrentClub extends Component {
         showMembers: false,
         users: [],
         books: [],
-        activeBook: {}
+        activeBook: {},
+        chooseBook: false
     }
 
     componentDidMount(){
@@ -17,9 +18,9 @@ class CurrentClub extends Component {
         .then(fetchedBooks => {
             this.setState({
                 books: fetchedBooks
-            })
+            }, this.findActiveBook(this.props.club))
         })
-        this.findActiveBook(this.props.club)
+        
     }
 
     componentDidUpdate(prevProps){
@@ -35,6 +36,12 @@ class CurrentClub extends Component {
         })
     }
     
+    chooseBook = () => {
+        this.setState({
+            chooseBook: !this.state.chooseBook
+        })
+    }
+
     handleDelete = () => {
         fetch(`http://localhost:3000/clubs/${this.props.club.id}`, {
             method: "DELETE"
@@ -51,12 +58,11 @@ class CurrentClub extends Component {
             let activeBookEntry = club.book_clubs.find(entry => entry["active?"] === true)
             let activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
             this.setState({
-                activeBook: activeBookFound
+                activeBook: activeBookFound,
+                chooseBook: false
             })
         } else {
-            this.setState({
-                activeBook: {}
-            })
+            return null
         }
     }
 
@@ -102,17 +108,14 @@ class CurrentClub extends Component {
     }
 
     findProgress = (user) => {
-        console.log(user.id)
-        console.log(this.props.club.user_clubs)
         let userClubs = this.props.club.user_clubs
         if (userClubs){
             let userClubEntry = userClubs.find(entry => entry.user_id === user.id)
             if (userClubEntry){
-                console.log(userClubEntry.progress)
                 return userClubEntry.progress
             }
         } else {
-            return 0
+            return "0"
         }
     }
     
@@ -130,7 +133,7 @@ class CurrentClub extends Component {
 
     render() { 
         let { name, image, meeting, users } = this.props.club
-        // console.log(this.props.users)
+        console.log(this.props.club.user_clubs)
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>
@@ -143,7 +146,7 @@ class CurrentClub extends Component {
                     <p> {users ? `Number of members: ${users.length}` : null}</p>
                     <ul>
                         {users.map(user => 
-                            <li key={user.id}>{user.name} Progress: {this.findProgress(user)} </li>
+                            <li key={user.id + Math.random()}>{user.name} Progress: {this.findProgress(user) ? this.findProgress(user) : 0} </li>
                             )}
                     </ul>
                     <button onClick={this.toggleMembers}>Add Members</button>
@@ -179,12 +182,13 @@ class CurrentClub extends Component {
                 </div>
 
                 <div className="book-info">
-                    {/* add ternary --> if book chosen, then show reading, otherwise show form to submit book */}
-                    { this.state.activeBook ?
+                    <button onClick={this.chooseBook}>Choose Current Book!</button>
                         <CurrentBook activeBook={this.state.activeBook}/>
+                        {this.state.chooseBook ? 
+                        < ChooseBook books={this.state.books} club={this.props.club} addActiveBook={this.addActiveBook} hideBookForm={this.chooseBook}/>
                         :
-                        < ChooseBook books={this.state.books} club={this.props.club} addActiveBook={this.addActiveBook}/>
-                    }
+                        null
+                        }
                     
                     <h4 align="center">Past books read</h4>
                     {this.findPastBooks() ? 

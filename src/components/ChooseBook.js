@@ -25,6 +25,7 @@ class ChooseBook extends Component {
         .then( fetchedBook => {
             console.log(fetchedBook)
             this.props.addActiveBook(fetchedBook)
+            this.props.hideBookForm()
         })
     }
 

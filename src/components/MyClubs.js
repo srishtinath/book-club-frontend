@@ -78,7 +78,8 @@ class MyClubs extends Component {
             }
         })
         this.setState({
-            clubs: changedClubArray
+            clubs: changedClubArray,
+            club: club
         })
     }
 
