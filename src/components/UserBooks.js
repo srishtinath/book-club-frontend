@@ -1,27 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import UserBook from './UserBooks'
 
-class UserBooks extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-       
-        }
-    }
-
-    render() {
-        console.log(this.props.users)
+const UserBooks = (props) => {
+    console.log(props.user.books.map(book => book.title))
     return ( 
-        <div>
-            {/* {this.props.users[0] ? 
-            <div>
-            {this.props.users[0].books.map((book) => 
-            <UserBook key={book.id} book={book} user={this.props.users}/>)}
-            </div>
-            : null} */}
+        <>
+        {/* {props.user.books ? 
+        <div> */}
+            {/* <ul>
+            {props.user.books.map(book => 
+                <li><UserBook key={book.id + Math.random()} book={book} user={props.user}/></li>
+            )}
+            </ul> */}
+        {/* </div>
+        : null}
+        <p>UserBooks</p> */}
+        <div className="wishlist-container">
+            <ul>
+                <li>Here's one thing</li>
+                <li>Here's another thing</li>
+                <li>Here's one thing</li>
+                <li>Here's another thing</li>
+            </ul>
         </div>
-     );
-    }
+        </>
+        );
 }
  
 export default UserBooks;

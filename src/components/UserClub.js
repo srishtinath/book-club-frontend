@@ -88,7 +88,7 @@ class UserClub extends Component {
 
         return (
             <>
-            <p>{name}</p>
+            <p><b>{name}</b></p>
             <img src={image} alt={name}></img>
             <p>Currently Reading: FIGURE THIS OUT</p>
             <p>Meeting Date: {meeting}</p>

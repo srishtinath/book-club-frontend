@@ -1,27 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Profile from './Profile';
-import UserBooks from "./UserBooks";
+import UserBooks from './UserBooks';
 
-class UserHome extends Component {
- 
-        state = { 
-            user: {}
-         }
-
-    componentDidMount() {
-        this.setState({
-            user: this.props.user
-        })
-    }
-
-    render() { 
-        return ( 
-            <div className="profile">
-                <Profile users={this.state.users}/>
-                <UserBooks users={this.state.users}/>
+const UserHome = (props) => {
+    return ( 
+        <div>
+            {props.user ? 
+            <div className="userhome-container">
+                <Profile user={props.user}/>
+                <UserBooks user={props.user}/>
             </div>
-         );
-    }
+            :
+            null
+            }
+        </div>
+     );
 }
  
 export default UserHome;

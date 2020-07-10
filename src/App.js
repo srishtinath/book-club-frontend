@@ -11,6 +11,10 @@ import MyClubs from './components/MyClubs';
 import Books from './components/Books';
 import UserForm from './components/UserForm';
 
+
+import WormPic5 from "../src/images/WormPic5.png";
+import WormPic4 from "../src/images/WormPic4.png";
+
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -25,7 +29,8 @@ class App extends Component {
       user_clubs: [],
       image: ""
     },
-    token: ""
+    token: "",
+    toggleImage: true
   }
 
   componentDidMount(){
@@ -84,6 +89,8 @@ class App extends Component {
       return <UserForm formName="Login Form" handleSubmit={this.handleLoginSubmit} history={this.props.history}/>
     } else if (routerProps.location.pathname === "/register"){
       return <UserForm formName="Register Form" handleSubmit={this.handleRegisterSubmit} history={this.props.history}/>
+    } else {
+      return <UserForm formName="Login Form" handleSubmit={this.handleLoginSubmit} history={this.props.history}/>
     }
   }
 
@@ -111,7 +118,13 @@ class App extends Component {
       },
       token: ""
     })
-    this.props.history.push('/home')
+    // this.props.history.push('/home')
+  }
+
+  imageClick = (event) => {
+      this.setState ({
+          toggleImage: !this.state.toggleImage
+      })
   }
 
   render() { 
@@ -119,23 +132,26 @@ class App extends Component {
     return ( 
       // <BrowserRouter >
       <div>
-      <div>
-        <nav>
-          <NavBar token={this.state.token} logoutUser={this.logoutUser}/>
-        </nav>
-
-        <div className="body-content">
-          <Switch>
-            <Route path="/home" exact render={this.renderHome} />
-            <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} />}/>
-            <Route path="/books" exact render={() => <Books user={this.state.user} />}/>
-            <Route path="/login" exact render={this.renderForm} />
-            <Route path="/register" exact render={this.renderForm} />
-            {/* <Route path="/logout" exact render={this.logoutUser} /> */}
-            {/* <Route render={() => <UserHome user={this.state.user}/>} /> */}
-        </Switch>
+        <div className="body-logo-container">
+          <img src={this.state.toggleImage ? WormPic5 : WormPic4} onClick={this.imageClick} className="body-logo" alt="worm-logo"/>
         </div>
-      </div>
+        <div>
+          <nav>
+            <NavBar token={this.state.token} logoutUser={this.logoutUser}/>
+          </nav>
+
+          <div className="body-content">
+            <Switch>
+              <Route path="/home" exact render={this.renderHome} />
+              <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} />}/>
+              <Route path="/books" exact render={() => <Books user={this.state.user} />}/>
+              <Route path="/login" exact render={this.renderForm} />
+              <Route path="/register" exact render={this.renderForm} />
+              {/* <Route path="/logout" exact render={this.logoutUser} /> */}
+              {/* <Route render={this.renderForm} /> */}
+          </Switch>
+          </div>
+        </div>
       </div>
       // </BrowserRouter>
      )

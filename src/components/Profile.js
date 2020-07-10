@@ -18,28 +18,34 @@ class Profile extends Component {
         return (
         
             <div>
-            {this.props.users[0] ? 
-            
-            <div className="top-container">
-                <div className="profile-container">
-                    <p className="user-name">
-                        {this.props.users[0].name}'s
-                        Profile
-                    </p>
-                    <div className="user-photo-container">
-                        <img className="user-photo" src={this.props.users[0].image} />
-                    </div>
-                </div>
+                {this.props.user ? 
+                <>
+                    <p className="user-name"> {this.state.user.name}'s Profile </p>
+                    <div className="top-container">
+                        <div className="profile-container">
+                            
+                            <div className="user-photo-container">
+                                <img className="user-photo" src={this.props.user.image} alt={this.state.user.id}/>
+                            </div>
                     
-                <div className="user-club-list-container">
-                    {this.props.users[0].clubs.map(club => {
-                    return  <div className="user-club-div">
-                        <UserClub user={this.props.users[0]} key={club.id} club={club}/>
+                        
+                            <h2 align="center">Clubs</h2>
+                            <div className="user-club-list-container">
+                                {this.state.user.clubs ? 
+                                <div>
+                                {this.state.user.clubs.map(club => {
+                                return <div className="user-club-div"><UserClub user={this.state.user} key={club.id} club={club}/></div>
+                                })}
+                                </div>
+                                :
+                                null}
+                            </div>
                         </div>
-                    })}
-                </div>
-                </div>
-                    : null}  
+                    </div>
+                </>
+                        :
+                        null
+                    }
             </div>
          );
     }

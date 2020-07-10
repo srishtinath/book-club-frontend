@@ -37,8 +37,8 @@ code {
 
 .logo-container {
   position: absolute;
-  max-width: 7%;
-  top: 1%;
+  max-width: 30%;
+  top: -8%;
   left: 1%;
   z-index: 10;
 }
@@ -46,6 +46,17 @@ code {
 .logo {
   max-width: 100%;
   top: 0%;
+}
+
+.body-logo-container {
+  position: fixed;
+  bottom: 0px;
+  right: 0;
+  width: 100px;
+}
+
+.body-logo {
+  max-width: 100%;
 }
 
 .body-content {
@@ -119,7 +130,7 @@ code {
   font-size: large;
   margin: auto;
   text-align: center;
-  border-style: dotted;
+  /* border-style: dotted; */
 }
 
 .create-club-content {
@@ -129,7 +140,7 @@ code {
 
 .create-club {
   width: 50%;
-  border-style: double;
+  /* border-style: double; */
   display: flex;
   justify-content: space-around;
 }
@@ -282,45 +293,43 @@ code {
     box-sizing: border-box;
 }
 
-.user-photo-container {
-  /* border: 2px solid black; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.user-photo {
-  width: 75%;
-  height: 200px;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 5px 10px 8px #888888;
-}
 
 .user-name {
-  font-size: 200%;
+  font-size: 2rem;
   color: black;
-  font-weight: 700;
-  /* border: 2px dotted black; */
-  height: 40px;
-  margin: 0px;
+  font-weight: bold;
   text-align: center;
+  /* border-style: double; */
+  width: 100%;
+}
+
+.top-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* border-style: dashed; */
 }
 
 .profile-container {
-  /* text-align: center; */
-  justify-content: center;
-  /* border: grey solid 1px; */
+  align-items: center;
+  width: 50%;
+  display: block;
+  margin: 1%;
+  /* border-style: dashed; */
+}
+
+.user-photo-container {
+  /* border: 2px solid black; */
+  width: 100%;
+  /* margin: 10%; */
   /* border-style: dotted; */
-  /* padding: 5%; */
-  width: 20%;
-  height: 60%;
-  display: inline-grid;
-  margin: 40px;
-  /* box-shadow: 3px 4px navy; */
-  /* background-color: white; */
+}
+
+
+.user-photo {
+  max-width: 100%;
+  border: 2px solid black;
+  box-shadow: 5px 10px 8px #888888;
 }
 
 .user-club-list-container {
@@ -328,14 +337,14 @@ code {
   /* display: flex; */
   /* padding: 10%; */
   /* border-style: dotted; */
-  margin: 20px;
-  width: 100%;
+  /* margin: 20px; */
+  height: 400px;
+  /* width: 60%; */
   /* float: right; */
   display: grid;
   grid-template-columns: auto auto auto;
   grid-row: 3;
   overflow: auto;
-  height: 80%;
   /* background-color: white; */
 }
 
@@ -345,16 +354,6 @@ code {
   /* display: inline;
   float: left; */
 /* } */
-
-.top-container {
-  display: flex;
-  /* justify-content: space-around; */
-  /* text-align: center; */
-  flex-direction: row;
-  /* flex-wrap: wrap; */
-  /* border-style: dotted; */
-  height: 500px;
-}
 
 
 .update-progress-form > input:first-child {
@@ -373,6 +372,13 @@ code {
 }
 
 
-/* .profile {
-  border-style: dotted;
-} */
+.userhome-container {
+  /* border-style: dotted; */
+  display: flex;
+  /* flex-direction: row; */
+}
+
+.wishlist-container {
+  width: 50%;
+  /* float: right; */
+}
