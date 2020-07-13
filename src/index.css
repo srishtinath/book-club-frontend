@@ -3,7 +3,7 @@ body {
   font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(191, 191, 191));
+  background-color: rgba(144, 164, 132, 0.3);;
 }
 
 code {
@@ -12,19 +12,20 @@ code {
 }
 
 .navbar {
-  background-color: rgb(144, 160, 128);
-  padding: 5px 0px;
-  margin-bottom: 3px;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  top: 4%;
+  left: 8%;
+  width: 90%;
+  /* display: block; */
+  /* border-style: double; */
+  z-index: 12;
 }
 
 .navbar-ul {
   list-style-type: none;
-  margin-right: 15%;
+  /* margin-right: 15%; */
   /* margin-left: auto; */
-  width: 20%;
+  width: 95%;
   text-align: right;
 }
 
@@ -33,17 +34,23 @@ code {
   padding-left: 5%;
 }
 
+/* .logout {
+  position: absolute;
+  float: right;
+} */
+
 .logo-container {
   position: absolute;
-  width: 40%;
+  /* width: 100%; */
   top: -10%;
-  left: -2%;
-  z-index: 0;
+  left: 0%;
+  z-index: 2;
+  width: 20%;
   /* border-style: double; */
 }
 
 .logo {
-  width: 40%;
+  width: 100%;
   top: 0%;
   /* border-style: double; */
 }
@@ -62,6 +69,12 @@ code {
 .body-content {
   max-width: 90%;
   margin: auto;
+  margin-top: 8%;
+}
+
+.login-form {
+  align-content: center;
+  text-align: center;
 }
 
 .clubs-content {
@@ -76,6 +89,7 @@ code {
  height: 100%;
  margin-right: 3%;
  overflow: auto;
+ background-color: ;
 }
 
 .clubs-list {
@@ -263,6 +277,7 @@ code {
   position: relative;
   grid-column: 1;
   grid-row: 1;
+  text-align: center;
 }
 
 .book-description {
@@ -333,19 +348,20 @@ code {
 .userclublist {
   display: block;
   width: 60%;
+
   /* padding: 2%; */
   /* border-style: dashed; */
 }
 
 .user-club-list-container {
   /* list-style-type: none; */
-  border-style: dotted;
   /* height: 300px; */
   /* display: flex; */
   /* flex-direction: row; */
   /* overflow: auto; */
   padding: 0;
   margin: 0;
+
 }
 
 .user-club-list {
@@ -377,6 +393,7 @@ code {
 .userhome-container {
   /* border-style: dotted; */
   display: block;
+
   /* flex-direction: row; */
 }
 
@@ -386,6 +403,10 @@ code {
   display: flex;
   overflow: hidden;
   align-items: center;
+
+  background-color: rgba(255,255,255, 0.3);
+  padding: 1%;
+  padding-top: 3%;
   /* float: right; */
 }
 
@@ -399,7 +420,8 @@ code {
 .wishlist-item {
   width: 120px;
   text-align: center;
-  margin: 1%;
+  /* margin: 1%; */
+
   /* display: inline; */
   
 }
@@ -429,6 +451,10 @@ code {
 
 .wishlist-item > img {
   width: 100px;
+}
+
+.add-to-wishlist {
+  width: 150px;
 }
 
 .profile-content {

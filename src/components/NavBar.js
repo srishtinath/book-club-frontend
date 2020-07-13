@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom"; 
-import BookWormLogo from '../images/BookWormLogo.png'
+// import BookWormLogo from '../images/BookWormLogo.png';
 
 
 import WormPic5 from "../images/WormPic5.png";
@@ -23,13 +23,14 @@ class NavBar extends Component {
         return ( 
             <div className="navbar">
                 {/* Welcome! */}
+                
                 <ul className="navbar-ul">
                     {this.props.token ?
                     <>
                     <NavLink to="/home" user={this.props.user}><li>Home</li></NavLink>
                     <NavLink to="/clubs" user={this.props.user}><li>Clubs</li></NavLink>
                     <NavLink to="/books" user={this.props.user}><li>Books</li></NavLink>
-                    <li><button onClick={this.props.logoutUser}>Logout</button></li>
+                    <li><button onClick={this.props.logoutUser} className="logout">Logout</button></li>
                     </>
                 :
                     <>
@@ -40,9 +41,6 @@ class NavBar extends Component {
                     
                     
                 </ul>
-                <div className="logo-container">
-                    <img src={BookWormLogo} className="logo" alt="bookworm-logo"/>
-                </div>
                 <div className="body-logo-container">
                     <img 
                     src={this.state.toggleImage ? WormPic5 : WormPic4} 

@@ -27,8 +27,8 @@ class UserForm extends Component {
         let { formName } = this.props
         // console.log(this.state)
         return (
-        <div> <h1>{formName}</h1>
-            <form onSubmit={this.handleSubmit}>
+        <div className="login-form"> <h1>{formName}</h1>
+            <form onSubmit={this.handleSubmit} >
                 <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Enter name"></input>
                 <input type="text" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter password"></input>
                 <input type="submit"/>

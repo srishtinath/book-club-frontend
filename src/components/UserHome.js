@@ -10,7 +10,7 @@ const UserHome = (props) => {
                 <p className="user-name"> {props.user.name}'s Profile </p>
                 <div className="profile-content">
                     <Profile user={props.user}/>
-                    <UserBooks user={props.user}/>
+                    <UserBooks user={props.user} goToWishlist={props.goToWishlist}/>
                 </div>
             </div>
             :

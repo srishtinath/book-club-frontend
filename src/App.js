@@ -10,6 +10,8 @@ import UserHome from './components/UserHome';
 import MyClubs from './components/MyClubs';
 import Books from './components/Books';
 import UserForm from './components/UserForm';
+import GardenBookWorm from '../src/images/GardenBookWorm.png'
+
 
 import { withRouter } from 'react-router-dom';
 
@@ -89,9 +91,13 @@ class App extends Component {
     }
   }
 
+  goToWishlist = () => {
+    this.props.history.push("/books")
+  }
+
   renderHome = (routerProps) => {
     if (this.state.token) {
-      return <UserHome user={this.state.user} />
+      return <UserHome user={this.state.user} goToWishlist={this.goToWishlist}/>
     } else {
       this.props.history.push("/login")
       console.log("boo")
@@ -121,13 +127,16 @@ class App extends Component {
     return ( 
       // <BrowserRouter >
       <>
+          <div className="logo-container">
+                    <img src={GardenBookWorm} className="logo" alt="bookworm-logo"/>
+                </div>
           <nav>
             <NavBar token={this.state.token} logoutUser={this.logoutUser}/>
           </nav>
 
           <div className="body-content">
             <Switch>
-              <Route path="/home" exact render={this.renderHome} />
+              <Route path="/home" exact render={this.renderHome}/>
               <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} />}/>
               <Route path="/books" exact render={() => <Books user={this.state.user} />}/>
               <Route path="/login" exact render={this.renderForm} />
