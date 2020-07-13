@@ -41,10 +41,10 @@ class Books extends Component {
         return filteredBookArray
     }
 
-    addToWishlist = (newBookId) => {
+    addToWishlist = (newBook) => {
         let currentUser = this.state.user
         let userBooks = currentUser.books
-        let foundBook = this.state.books.find(book => book.id === newBookId)
+        let foundBook = this.state.books.find(book => book.id === newBook.id)
         if (!userBooks){
             userBooks = []
         }

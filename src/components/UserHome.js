@@ -7,8 +7,11 @@ const UserHome = (props) => {
         <div>
             {props.user ? 
             <div className="userhome-container">
-                <Profile user={props.user}/>
-                <UserBooks user={props.user}/>
+                <p className="user-name"> {props.user.name}'s Profile </p>
+                <div className="profile-content">
+                    <Profile user={props.user}/>
+                    <UserBooks user={props.user}/>
+                </div>
             </div>
             :
             null

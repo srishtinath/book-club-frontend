@@ -22,26 +22,28 @@ class Book extends Component {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "accept": "application/json",
                 "Authorization": localStorage.token
             },
             body: JSON.stringify({
-                book_id: this.props.book.id,
                 user_id: this.props.user.id,
+                book_id: this.props.book.id,
                 "read?": false
             })
         })
         .then( r => r.json())
-        .then(newEntry => {
-            let newBookId = newEntry.book_id
-            this.props.addToWishlist(newBookId)
+        .then(fetchedBook => {
+            this.props.addToWishlist(fetchedBook)
         })
     }
 
     checkOnWishlist = () => {
         let user = this.props.user
         if (user.books) {
-            let existingBook = user.books.find(book => book.id === this.props.book.id)
+            console.log(this.props)
+            // debugger
+            let existingBook = user.books.find(
+                book => book.id 
+                === this.props.book.id)
             if (existingBook) {
                 this.setState({
                     onWishlist: true
@@ -71,6 +73,7 @@ class Book extends Component {
 
                     <div className="underlay">
                         <img src={image} alt={title} className="book-image"/>
+                        <br></br>
                         <b>{ title }</b>
                         <p>Author: { author }</p>
                         <p>Genre: { genre }</p>

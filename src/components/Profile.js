@@ -4,13 +4,18 @@ import UserClub from './UserClub'
 class Profile extends Component {
     
     state = {
-        user: {}
+        user: {},
+        clubs: []
     }
 
     componentDidMount(){
-        this.setState({
-            user: this.props.user
-        })
+        fetch("http://localhost:3000/clubs")
+        .then(r => r.json())
+        .then(fetchedClubs => 
+            this.setState({
+                clubs: fetchedClubs,
+                user: this.props.user
+        }))
     }
 
     render() { 
@@ -20,28 +25,29 @@ class Profile extends Component {
             <div>
                 {this.props.user ? 
                 <>
-                    <p className="user-name"> {this.state.user.name}'s Profile </p>
                     <div className="top-container">
-                        <div className="profile-container">
-                            
                             <div className="user-photo-container">
                                 <img className="user-photo" src={this.props.user.image} alt={this.state.user.id}/>
+                                <h4>Kelly quotes</h4>
                             </div>
                     
                         
-                            <h2 align="center">Clubs</h2>
-                            <div className="user-club-list-container">
-                                {this.state.user.clubs ? 
+                            <div className="userclublist">
+                                {/* <h4 align="center">Clubs</h4> */}
                                 <div>
-                                {this.state.user.clubs.map(club => {
-                                return <div className="user-club-div"><UserClub user={this.state.user} key={club.id} club={club}/></div>
-                                })}
+                                    {this.state.user.clubs ? 
+                                    <ul className="user-club-list">
+                                    {this.state.user.clubs.map(club => {
+                                    return <li key={club.id} className="user-club-div">
+                                        <UserClub user={this.state.user} key={club.id} club={club} clubs={this.state.clubs}/>
+                                        </li>
+                                    })}
+                                    </ul>
+                                    :
+                                    null}
                                 </div>
-                                :
-                                null}
                             </div>
                         </div>
-                    </div>
                 </>
                         :
                         null

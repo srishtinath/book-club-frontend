@@ -7,39 +7,32 @@ class UserClub extends Component {
         this.state = { 
             toggleUpdate: false,
             userClubProgress: this.findProgress(),
-            clubs: [],
+            club: {},
             activeBook: {}
          }
     }
 
     componentDidMount(){
-        fetch("http://localhost:3000/clubs")
+        fetch(`http://localhost:3000/clubs/${this.props.club.id}`)
         .then(r => r.json())
-        .then(fetchedClubs => {
+        .then(fetchedClub => {
             this.setState({
-                clubs: fetchedClubs
-            })
-            this.findActiveBook()
+                club: fetchedClub
+            }, this.findActiveBook(fetchedClub))
         })
     }
 
-    findActiveBook = () => {
-        // //WANTS TO RETURN THE book_id that is active 
-        // //maps over this.state.clubs.book_clubs to FIND the 
-        // if (this.state.clubs) {
-        //     let activeBookEntry = this.state.clubs.book_clubs.find(entry => entry["active?"] === true)
-        // }
-        //     // l
-        // //     let activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
-        // //     this.setState({
-        // //         activeBook: activeBookFound
-        // //     })
-        // // } else {
-        // //     this.setState({
-        // //         activeBook: {}
-        // //     })
-        // // }
-        // console.log(activeBookEntry)
+
+    findActiveBook = (club) => {
+        let activeBookEntry 
+        let activeBookFound
+        if (club.book_clubs) {
+            activeBookEntry = club.book_clubs.find(entry => entry["active?"] === true)
+            activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
+            this.setState({
+                activeBook: activeBookFound
+            })
+        }
     }
 
     findProgress = () => {
@@ -82,32 +75,35 @@ class UserClub extends Component {
         })
     }
 
+    
+
     render() {
         
         let {name, image, meeting} = this.props.club
 
         return (
             <>
-            <p><b>{name}</b></p>
-            <img src={image} alt={name}></img>
-            <p>Currently Reading: FIGURE THIS OUT</p>
-            <p>Meeting Date: {meeting}</p>
-        
-            <p>Progress in Book: {this.state.userClubProgress}</p>
-            <button onClick={this.handleUpdate}>{this.state.toggleUpdate ? "Hide" : "Update Progress"}</button>
-                {this.state.toggleUpdate ? 
-                <form className="update-progress-form" onSubmit={this.handleSubmit}>
-                    <input 
-                        type="text" 
-                        placeholder="Number 1 - 10"
-                        value={this.state.userClubProgress}
-                        onChange={this.handleInput}/>
-                    <input 
-                        type="submit" 
-                        value="save"/>
-                </form>
-                : 
-                null} 
+            <div className="user-club-div">
+                <b>{name}</b>
+                <img src={image} alt={name}></img>
+                <br></br>Currently Reading: {this.state.activeBook.title}
+                <br></br>Meeting Date: {meeting}
+                <br></br>Progress in Book: {this.state.userClubProgress}
+                <br></br><button onClick={this.handleUpdate}>{this.state.toggleUpdate ? "Hide" : "Update Progress"}</button>
+                    {this.state.toggleUpdate ? 
+                    <form className="update-progress-form" onSubmit={this.handleSubmit}>
+                        <input 
+                            type="text" 
+                            placeholder="Number 1 - 10"
+                            value={this.state.userClubProgress}
+                            onChange={this.handleInput}/>
+                        <input 
+                            type="submit" 
+                            value="save"/>
+                    </form>
+                    : 
+                    null} 
+            </div>
                 </>
           );
     }}

@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom"; 
-import BookWormsLogo from '../images/Bookwormslogo.png'
+import BookWormLogo from '../images/BookWormLogo.png'
+
+
+import WormPic5 from "../images/WormPic5.png";
+import WormPic4 from "../images/WormPic4.png";
 
 
 class NavBar extends Component {
 
+    state = {
+        toggleImage: true
+    }
+
+    imageClick = () => {
+        this.setState({
+            toggleImage: !this.state.toggleImage
+        })
+    }
+    
     render() { 
         return ( 
             <div className="navbar">
@@ -27,7 +41,14 @@ class NavBar extends Component {
                     
                 </ul>
                 <div className="logo-container">
-                    <img src={BookWormsLogo} className="logo" alt="bookworm-logo"/>
+                    <img src={BookWormLogo} className="logo" alt="bookworm-logo"/>
+                </div>
+                <div className="body-logo-container">
+                    <img 
+                    src={this.state.toggleImage ? WormPic5 : WormPic4} 
+                    onMouseOver={this.imageClick} 
+                    className="body-logo" 
+                    alt="worm-logo"/>
                 </div>
             </div>
          );

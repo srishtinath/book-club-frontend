@@ -11,10 +11,6 @@ import MyClubs from './components/MyClubs';
 import Books from './components/Books';
 import UserForm from './components/UserForm';
 
-
-import WormPic5 from "../src/images/WormPic5.png";
-import WormPic4 from "../src/images/WormPic4.png";
-
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -30,7 +26,6 @@ class App extends Component {
       image: ""
     },
     token: "",
-    toggleImage: true
   }
 
   componentDidMount(){
@@ -53,7 +48,6 @@ class App extends Component {
             method: "POST",
             headers: {
                 "content-type": "application/json",
-                "accept": "application/json"
             },
             body: JSON.stringify(userInfo)
         })
@@ -77,9 +71,10 @@ class App extends Component {
 
   handleResponse = (resp) => {
     if (resp.message){
-      alert(resp.message)
+      console.log(resp.message)
     } else {
       this.setState(resp)
+      localStorage.token = resp.token
       this.props.history.push("/home")
     }
   }
@@ -121,21 +116,11 @@ class App extends Component {
     // this.props.history.push('/home')
   }
 
-  imageClick = (event) => {
-      this.setState ({
-          toggleImage: !this.state.toggleImage
-      })
-  }
-
   render() { 
-    console.log(this.state)
+    // console.log(this.state)
     return ( 
       // <BrowserRouter >
-      <div>
-        <div className="body-logo-container">
-          <img src={this.state.toggleImage ? WormPic5 : WormPic4} onClick={this.imageClick} className="body-logo" alt="worm-logo"/>
-        </div>
-        <div>
+      <>
           <nav>
             <NavBar token={this.state.token} logoutUser={this.logoutUser}/>
           </nav>
@@ -151,8 +136,7 @@ class App extends Component {
               {/* <Route render={this.renderForm} /> */}
           </Switch>
           </div>
-        </div>
-      </div>
+          </>
       // </BrowserRouter>
      )
   }
