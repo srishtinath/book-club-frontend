@@ -122,9 +122,11 @@ class MyClubs extends Component {
                 }
             
             <button 
-                className="add-a-club" 
+                className="button" 
                 onClick={this.showClubForm}>
                 {this.state.displayClubList ? "Add a club!" : "Back to club list"}
+                <div class="button__horizontal"></div>
+                    <div class="button__vertical"></div>
                 </button>
 
             </div>

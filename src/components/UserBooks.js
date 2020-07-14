@@ -15,7 +15,9 @@ const UserBooks = (props) => {
             <h2 align="center">My Wishlist</h2>
             <ul className="wishlist-container">
                 <div className="scroll-box">
-                <li> <button className="add-to-wishlist" onClick={goToBooksList}>Add more items...</button></li>
+                <li> <button className="button" onClick={goToBooksList}>Add more items...
+                <div class="button__horizontal"></div>
+                    <div class="button__vertical"></div></button></li>
 
                 {props.user.books.map(book => {
                     return <li key={book.id + Math.random()} className="wishlist-item">

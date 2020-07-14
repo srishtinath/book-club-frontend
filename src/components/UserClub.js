@@ -89,7 +89,9 @@ class UserClub extends Component {
                 <br></br>Currently Reading: {this.state.activeBook.title}
                 <br></br>Meeting Date: {meeting}
                 <br></br>Progress in Book: {this.state.userClubProgress}
-                <br></br><button onClick={this.handleUpdate}>{this.state.toggleUpdate ? "Hide" : "Update Progress"}</button>
+                <br></br><button onClick={this.handleUpdate} className="button">{this.state.toggleUpdate ? "Hide" : "Update Progress"}
+                <div class="button__horizontal"></div>
+                    <div class="button__vertical"></div></button>
                     {this.state.toggleUpdate ? 
                     <form className="update-progress-form" onSubmit={this.handleSubmit}>
                         <input 
