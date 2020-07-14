@@ -82,16 +82,19 @@ class UserClub extends Component {
         let {name, image, meeting} = this.props.club
 
         return (
-            <>
-            <div className="user-club-div">
-                <b>{name}</b>
-                <img src={image} alt={name}></img>
-                <br></br>Currently Reading: {this.state.activeBook.title}
-                <br></br>Meeting Date: {meeting}
-                <br></br>Progress in Book: {this.state.userClubProgress}
+            <div className="userclub-container">
+                <img className="userclub-img" src={image} alt={name}></img>
+                <div className="user-club-div">
+                    <b>{name}</b>
+                    <br></br>Currently Reading: {this.state.activeBook.title}
+                    <br></br>Meeting Date: {meeting}
+                    <br></br>Progress in Book: {this.state.userClubProgress}
+                    </div>
+                <div>
                 <br></br><button onClick={this.handleUpdate} className="button">{this.state.toggleUpdate ? "Hide" : "Update Progress"}
                 <div class="button__horizontal"></div>
                     <div class="button__vertical"></div></button>
+                    <br></br>
                     {this.state.toggleUpdate ? 
                     <form className="update-progress-form" onSubmit={this.handleSubmit}>
                         <input 
@@ -106,7 +109,7 @@ class UserClub extends Component {
                     : 
                     null} 
             </div>
-                </>
+                </div>
           );
     }}
  

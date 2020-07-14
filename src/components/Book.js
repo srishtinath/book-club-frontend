@@ -62,7 +62,7 @@ class Book extends Component {
                         <div>{ description } 
                             <p></p>
                             <div>
-                                <button className="button" 
+                                <button className="button add-to-wishlist" 
                                 onClick={this.addToWishlist}
                                 disabled={this.state.onWishlist}> 
                                 { this.state.onWishlist ? "Added!" : "Add to Wishlist" }

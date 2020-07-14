@@ -30,9 +30,6 @@ class NavBar extends Component {
                     <NavLink to="/home" user={this.props.user}><li>Home</li></NavLink>
                     <NavLink to="/clubs" user={this.props.user}><li>Clubs</li></NavLink>
                     <NavLink to="/books" user={this.props.user}><li>Books</li></NavLink>
-                    <li><button onClick={this.props.logoutUser} className="button">Logout
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div></button></li>
                     </>
                 :
                     <>
@@ -43,6 +40,9 @@ class NavBar extends Component {
                     
                     
                 </ul>
+                <button onClick={this.props.logoutUser} className="button logout">Logout
+                    <div class="button__horizontal"></div>
+                    <div class="button__vertical"></div></button>
                 <div className="body-logo-container">
                     <img 
                     src={this.state.toggleImage ? WormPic5 : WormPic4} 
