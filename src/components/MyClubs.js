@@ -65,18 +65,7 @@ class MyClubs extends Component {
     }
 
     memberAdded = (newMember, club) => {
-        let clubChanged = this.state.clubs.find(clubList => clubList.id === club.id)
-        if (!clubChanged.users){
-            clubChanged.users = []
-        }
-        clubChanged.users.push(newMember)
-        let changedClubArray = this.state.clubs.filter(clubEntry => {
-            if (clubEntry.id === clubChanged.id){
-                return clubChanged
-            } else {
-                return clubEntry
-            }
-        })
+        let changedClubArray = this.props.memberAdded(newMember, club)
         this.setState({
             clubs: changedClubArray,
             club: club

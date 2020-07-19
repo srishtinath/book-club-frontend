@@ -18,6 +18,14 @@ class Profile extends Component {
         }))
     }
 
+    componentDidUpdate(prevProps){
+        if (this.props !== prevProps){
+            this.setState({
+                clubs: this.props.user.clubs
+            })
+        }
+    }
+
     render() { 
 
         return (
@@ -39,7 +47,7 @@ class Profile extends Component {
                                 {/* Second entry */}
                                 <div>
                                     {this.state.user.clubs ? 
-                                    <ul className="user-club-list">
+                                    <ul className="user-club-list" style={{listStyleType: 'none'}}>
                                     {this.state.user.clubs.map(club => {
                                     return <li key={club.id + Math.random()} className="userclub-li">
                                         <UserClub user={this.state.user} key={club.id} club={club} clubs={this.state.clubs}/>
@@ -47,7 +55,7 @@ class Profile extends Component {
                                     })}
                                     </ul>
                                     :
-                                    null}
+                                   <p>You're not in any clubs! Join one by clicking the link on top!</p>}
                                 </div>
                             </div>
                         </div>

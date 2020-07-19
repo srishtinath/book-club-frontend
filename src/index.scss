@@ -30,16 +30,12 @@ a:hover {
   left: 35%;
   width: 60%;
   height: 8%;
-  /* display: block; */
-  // border-style: double;
   display: flex;
   z-index: 12;
 }
 
 .navbar-ul {
   list-style-type: none;
-  /* margin-right: 15%; */
-  /* margin-left: auto; */
   width: 95%;
   text-align: right;
   justify-content: center;
@@ -58,18 +54,15 @@ a:hover {
 
 .logo-container {
   position: absolute;
-  /* width: 100%; */
   top: -10%;
   left: 0%;
   z-index: 0;
   width: 300px;
-  /* border-style: double; */
 }
 
 .logo {
   width: 100%;
   top: 0%;
-  /* border-style: double; */
 }
 
 .body-logo-container {
@@ -133,7 +126,6 @@ a:hover {
   height: 150%;
   padding: 0% 3%;
   top: 6%;
-  // text-align: center;
   align-items: center;
 }
 
@@ -320,9 +312,9 @@ a:hover {
 .book-description {
   color: white;
   font-size: 20px;
-  /* position: absolute; */
   top: 50%;
   left: 50%;
+  // srishti added the following:
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -351,7 +343,6 @@ a:hover {
   color: black;
   font-weight: bold;
   text-align: center;
-  /* border-style: double; */
   width: 100%;
 }
 
@@ -372,6 +363,7 @@ a:hover {
 .user-photo-content{
   position: absolute;
   padding: 3%;
+  // srishti added the following:
   left: -1000px;
   -webkit-animation: slide 1s forwards;
   -webkit-animation-delay: 0.5s;
@@ -379,21 +371,22 @@ a:hover {
   animation-delay: 0.5s;
 }
 
+// srishti added the following:
 @-webkit-keyframes slide {
   100% { left: 0; }
 }
-
+// srishti added the following:
 @keyframes slide {
   100% { left: 0; }
 }
 
+// srishti added the following:
 .user-photo {
   max-width: 100%;
   box-shadow: 8px 10px 8px #888888;
-
 }
 
-
+// srishti added the following:
 .userclublist {
   display: block;
   width: 60%;
@@ -403,7 +396,7 @@ a:hover {
   background-color: rgba(255,255,255, 0.3);
 }
 
-
+// srishti added the following:
 .user-club-list {
   list-style-type: none;
   display: block;
@@ -416,10 +409,12 @@ a:hover {
   animation-delay: 1s;
 }
 
+// srishti added the following:
 @-webkit-keyframes slide-right {
   100% { right: 80px; }
 }
 
+// srishti added the following:
 @keyframes slide-right {
   100% { right: 80px; }
 }
@@ -441,6 +436,9 @@ a:hover {
 
 .userhome-container {
   display: block;
+}
+.no-club-list {
+  position: absolute;
 }
 
 .wishlist-container {
@@ -475,6 +473,7 @@ a:hover {
   padding-top: 3%;
 }
 
+// srishti added the following:
 .scroll-box {
   display: flex;
   width: 100%;
@@ -485,10 +484,11 @@ a:hover {
   animation-timing-function: linear;
 }
 
+// srishti added the following:
 .scroll-box:hover {
   animation-play-state: paused;
 }
-
+// srishti added the following:
 @keyframes scroll {
   0% {
     margin-left: -1200px;
@@ -505,7 +505,6 @@ a:hover {
 .add-to-wishlist {
   width: 150px;
   margin: auto;
-  // align-self: center;
 }
 
 .profile-content {
@@ -516,6 +515,7 @@ a:hover {
   transition: all 0.4s ease-out;
 }
 
+// srishti added the following (copied and pasted frmo CodePen):
 .button {
     
   --offset: 10px;

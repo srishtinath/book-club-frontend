@@ -25,7 +25,8 @@ class App extends Component {
       clubs: [],
       user_books: [],
       user_clubs: [],
-      image: ""
+      image: "",
+      quote: ""
     },
     token: "",
   }
