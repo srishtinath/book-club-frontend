@@ -5,7 +5,7 @@ class Profile extends Component {
     
     state = {
         user: {},
-        clubs: []
+        clubs: [],
     }
 
     componentDidMount(){
@@ -26,19 +26,22 @@ class Profile extends Component {
                 {this.props.user ? 
                 <>
                     <div className="top-container">
+                        {/* First entry */}
                             <div className="user-photo-container">
-                                <img className="user-photo" src={this.props.user.image} alt={this.state.user.id}/>
-                                <h4>Kelly quotes</h4>
+                                <div className="user-photo-content">
+                                    <img className="user-photo" src={this.props.user.image} alt={this.state.user.id}/>
+                                    <h4>{this.state.user.quote}</h4>
+                                </div>
                             </div>
                     
                         
                             <div className="userclublist">
-                                {/* <h4 align="center">Clubs</h4> */}
+                                {/* Second entry */}
                                 <div>
                                     {this.state.user.clubs ? 
                                     <ul className="user-club-list">
                                     {this.state.user.clubs.map(club => {
-                                    return <li key={club.id} className="user-club-div">
+                                    return <li key={club.id + Math.random()} className="userclub-li">
                                         <UserClub user={this.state.user} key={club.id} club={club} clubs={this.state.clubs}/>
                                         </li>
                                     })}

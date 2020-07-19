@@ -40,9 +40,13 @@ class NavBar extends Component {
                     
                     
                 </ul>
+                {this.props.token ? 
                 <button onClick={this.props.logoutUser} className="button logout">Logout
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div></button>
+                    <div className="button__horizontal"></div>
+                    <div className="button__vertical"></div></button>
+
+                    : null
+                }
                 <div className="body-logo-container">
                     <img 
                     src={this.state.toggleImage ? WormPic5 : WormPic4} 

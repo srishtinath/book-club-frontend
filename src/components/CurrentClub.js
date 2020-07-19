@@ -150,8 +150,8 @@ class CurrentClub extends Component {
                             )}
                     </ul>
                     <button onClick={this.toggleMembers} className="button">Add Members
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div>
+                    {/* <div class="button__horizontal"></div>
+                    <div class="button__vertical"></div> */}
                     </button>
                 
                     {this.state.showMembers 
@@ -163,12 +163,10 @@ class CurrentClub extends Component {
                                 <ul>
                                 {this.props.users.map(user => 
                                 <li>{user.name}
-                                <button className="button" 
+                                <button className="simple-button" 
                                 onClick={() => this.addMember(user)}
                                 disabled={!this.memberInClub(user.id)}> 
                                 { this.memberInClub(user.id) ? "Add!" : "Added to club" }
-                                <div class="button__horizontal"></div>
-                                <div class="button__vertical"></div>
                                 </button>
                                 </li>
                                 )}
@@ -183,14 +181,16 @@ class CurrentClub extends Component {
                     <p>{meeting ? `Next meeting: ${meeting}` : null}</p>
                     <div className="delete-club">
                     <button onClick={this.handleDelete} className="button">Delete Club</button>
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div>
+                    {/* <div className="button__horizontal"></div> */}
+                    {/* <div className="button__vertical"></div> */}
                     </div>
                 </div>
 
                 <div className="book-info">
-                    <button onClick={this.chooseBook} className="button">Choose Current Book!<div class="button__horizontal"></div>
-                    <div class="button__vertical"></div></button>
+                    <button onClick={this.chooseBook} className="button">Choose Current Book!
+                    {/* <div className="button__horizontal"></div> */}
+                    {/* <div className="button__vertical"></div> */}
+                    </button>
                         <CurrentBook activeBook={this.state.activeBook}/>
                         {this.state.chooseBook ? 
                         < ChooseBook books={this.state.books} club={this.props.club} addActiveBook={this.addActiveBook} hideBookForm={this.chooseBook}/>

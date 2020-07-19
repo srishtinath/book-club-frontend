@@ -59,15 +59,18 @@ class Book extends Component {
         return ( 
                 <div className="book-card">
                     <div className="overlay">
-                        <div>{ description } 
-                            <p></p>
+                        <div className="overlay-items">
                             <div>
-                                <button className="button add-to-wishlist" 
+                                { description } 
+                                <p></p>
+                            </div>
+                            <div>
+                                <button className="add-to-wishlist button" 
                                 onClick={this.addToWishlist}
                                 disabled={this.state.onWishlist}> 
                                 { this.state.onWishlist ? "Added!" : "Add to Wishlist" }
-                                <div class="button__horizontal"></div>
-                                <div class="button__vertical"></div>
+                                <div className="button__horizontal"></div>
+                                <div className="button__vertical"></div>
                                 </button>
                             </div>
                         </div>

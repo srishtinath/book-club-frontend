@@ -73,9 +73,10 @@ class UserClub extends Component {
                 progress: this.state.userClubProgress
             })
         })
+        this.setState({
+            toggleUpdate: false
+        })
     }
-
-    
 
     render() {
         
@@ -83,8 +84,8 @@ class UserClub extends Component {
 
         return (
             <div className="userclub-container">
-                <img className="userclub-img" src={image} alt={name}></img>
-                <div className="user-club-div">
+                <img className="userclub-img" src={image} alt={name} style={{width:'30%'}}></img>
+                <div className="user-club-div" style={{width:'40%'}}>
                     <b>{name}</b>
                     <br></br>Currently Reading: {this.state.activeBook.title}
                     <br></br>Meeting Date: {meeting}
@@ -92,19 +93,18 @@ class UserClub extends Component {
                     </div>
                 <div>
                 <br></br><button onClick={this.handleUpdate} className="button">{this.state.toggleUpdate ? "Hide" : "Update Progress"}
-                <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div></button>
+                <div className="button__horizontal"></div>
+                    <div className="button__vertical"></div></button>
                     <br></br>
                     {this.state.toggleUpdate ? 
-                    <form className="update-progress-form" onSubmit={this.handleSubmit}>
+                    <form className="update-progress-form" onSubmit={this.handleSubmit} style={{width:'10%'}}>
                         <input 
                             type="text" 
                             placeholder="Number 1 - 10"
                             value={this.state.userClubProgress}
                             onChange={this.handleInput}/>
-                        <input 
-                            type="submit" 
-                            value="save"/>
+                            <button className="button">Submit
+                            </button>
                     </form>
                     : 
                     null} 

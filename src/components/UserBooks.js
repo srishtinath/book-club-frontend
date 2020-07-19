@@ -1,5 +1,5 @@
 import React from 'react';
-import UserBook from './UserBooks'
+// import UserBook from './UserBooks'
 
 const UserBooks = (props) => {
     // console.log(props.user.books.map(book => book.title))
@@ -14,10 +14,11 @@ const UserBooks = (props) => {
         <div >
             <h2 align="center">My Wishlist</h2>
             <div className="wishlist-container">
+                <div className="wishlist-slide">
                 <div className="scroll-box">
                     <button className="button add-items" onClick={goToBooksList}>Add more items...
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div></button>
+                    <div className="button__horizontal"></div>
+                    <div className="button__vertical"></div></button>
                     <ul className="wishlist-ul">
                     {props.user.books.map(book => {
                         return <li key={book.id + Math.random()} className="wishlist-item">
@@ -27,6 +28,7 @@ const UserBooks = (props) => {
                         </li>
                     })}
                     </ul>
+                </div>
                 </div>
             </div>
         </div>

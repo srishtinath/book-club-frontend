@@ -11,6 +11,19 @@ code {
     monospace;
 }
 
+a:link{
+  text-emphasis: bold;
+}
+
+a:visited {
+  color: darkgreen;
+}
+
+a:hover {
+  color: rgb(220, 171, 183);
+  text-decoration: none;
+}
+
 .navbar {
   position: absolute;
   top: 4%;
@@ -48,7 +61,7 @@ code {
   /* width: 100%; */
   top: -10%;
   left: 0%;
-  z-index: 2;
+  z-index: 0;
   width: 300px;
   /* border-style: double; */
 }
@@ -85,11 +98,13 @@ code {
   display: flex;
   flex-direction: row;
   height: 35em;
+  align-items: flex-start;
 }
 
 .clubs-container {
  position: relative;
- width: 30%;
+ top: 5%;
+ width: 25%;
  height: 100%;
  margin-right: 3%;
  overflow: auto;
@@ -99,6 +114,8 @@ code {
 .clubs-list {
   margin: 2%;
   cursor: pointer;
+  background-color: rgba(255,255,255, 0.4);
+  padding: 10%;
 }
 
 .club-card {
@@ -112,12 +129,18 @@ code {
 .selected-club {
   position: relative;
   width: 70%;
+  background-color: rgba(255,255,255, 0.4);
+  height: 150%;
+  padding: 0% 3%;
+  top: 6%;
+  // text-align: center;
+  align-items: center;
 }
 
 .current-club-container {
   padding: 3px;
   width: 99%;
-  /* display: flex; */
+  overflow: auto;
 }
 
 .club-title {
@@ -138,6 +161,10 @@ code {
   max-width: 10%;
   float: left;
   margin-right: 5%;
+}
+
+.add-club-btn {
+  width: 25%;
 }
 
 .create-club-container {
@@ -166,11 +193,11 @@ code {
 .modal {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  left: 30%;
-  top: 91px;
-  width: 70%; /* Full width */
+  left: 0%;
+  top: 0px;
+  width: 100%; /* Full width */
   height: 100%; /* Full height */
-  background-color: rgba(42, 144, 174, 0.8); /* Black w/ opacity */
+  background-color: rgba(82, 118, 65, 0.8); /* Black w/ opacity */
 }
 
 .modal-content {
@@ -275,8 +302,12 @@ code {
   background-color: white;
   z-index: 3;
   text-align: center;
-  align-content: center;
+  align-items: center;
+}
+
+.overlay-items{
   display: block;
+  // border-style: dashed;
 }
 
 .underlay {
@@ -331,84 +362,85 @@ code {
 }
 
 .user-photo-container {
-  /* border: 2px solid black; */
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255,255,255, 0.3);
   width: 40%;
-  /* padding: 2%; */
-  /* margin: 10%; */
-  /* border-style: dotted; */
+  height: 400px;
 }
 
+.user-photo-content{
+  position: absolute;
+  padding: 3%;
+  left: -1000px;
+  -webkit-animation: slide 1s forwards;
+  -webkit-animation-delay: 0.5s;
+  animation: slide 1s forwards;
+  animation-delay: 0.5s;
+}
+
+@-webkit-keyframes slide {
+  100% { left: 0; }
+}
+
+@keyframes slide {
+  100% { left: 0; }
+}
 
 .user-photo {
   max-width: 100%;
-  /* border: 2px solid black; */
   box-shadow: 8px 10px 8px #888888;
-  /* border: 1px solid purple; */
-  /* animation: mymove 3s infinite; */
+
 }
 
-@keyframes mymove {
-  50% {border: 15px solid lightblue;}
-}
 
 .userclublist {
   display: block;
   width: 60%;
-
-  /* padding: 2%; */
-  /* border-style: dashed; */
+  margin-left: 1%;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255,255,255, 0.3);
 }
 
-.user-club-list-container {
-  /* list-style-type: none; */
-  /* height: 300px; */
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* overflow: auto; */
-  padding: 0;
-  margin: 0;
-
-}
 
 .user-club-list {
   list-style-type: none;
   display: block;
+  position: absolute;
+  // padding: 3%;
+  right: -1000px;
+  -webkit-animation: slide-right 1s forwards;
+  -webkit-animation-delay: 1s;
+  animation: slide-right 1s forwards;
+  animation-delay: 1s;
 }
+
+@-webkit-keyframes slide-right {
+  100% { right: 80px; }
+}
+
+@keyframes slide-right {
+  100% { right: 80px; }
+}
+
 
 .userclub-container {
   display: flex;
+  width: 100%;
 }
 
 .user-club-div {
-  /* text-align: center; */
-  /* margin: 1%; */
   max-width: 100%;
   margin: 1%;
-  margin-right: 5%;
-  /* border-style: dotted; */
-}
-
-.update-progress-form > input:first-child {
-  width: 100px; 
 }
 
 .userclub-img {
   height: 100px;
 }
 
-.user-club-div > img {
-  height: 100px;
-  float: left;
-  margin-right: 3%;
-  /* width: 100px; */
-}
-
-
 .userhome-container {
-  /* border-style: dotted; */
   display: block;
-
-  /* flex-direction: row; */
 }
 
 .wishlist-container {
@@ -422,34 +454,24 @@ code {
   /* float: right; */
 }
 
-/* .wishlist-container:hover {
-  animation-play-state: paused;
-  -webkit-animation-play-state: paused;
-} */
-
 .wishlist-ul {
   list-style-type: none;
   display: flex;
   overflow: hidden;
-  // align-items: center;
   width: 100%;
   padding: 1%;
-  // background-color: rgba(255,255,255, 0.3);
 }
+
 
 
 .wishlist-item {
   width: 120px;
   text-align: center;
-  /* margin: 1%; */
-
-  /* display: inline; */
-  
 }
 
 .add-items {
-  // height: 80%;
-  margin: auto 2%;
+  height: 80%;
+  margin-top: 80px;
   padding-top: 3%;
 }
 
@@ -457,10 +479,10 @@ code {
   display: flex;
   width: 100%;
   animation-name: scroll;
-    	animation-duration: 8s;
-    	animation-iteration-count: infinite;
-    	animation-direction: right;
-    	animation-timing-function: linear;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  animation-direction: right;
+  animation-timing-function: linear;
 }
 
 .scroll-box:hover {
@@ -482,13 +504,17 @@ code {
 
 .add-to-wishlist {
   width: 150px;
-  align-self: center;
+  margin: auto;
+  // align-self: center;
 }
 
 .profile-content {
   display: block;
 }
 
+.userclub-li {
+  transition: all 0.4s ease-out;
+}
 
 .button {
     
