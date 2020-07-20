@@ -50,12 +50,10 @@ class AddMember extends Component {
             <ul>
                 {listOfUsers.map(user => 
                     <li key={user.id}>{user.name}
-                    <button className="button"  
+                    <button
                     onClick={() => this.addMember(user)}
                     disabled={!this.memberInClub(user.id)}> 
                     { this.memberInClub(user.id) ? "Add!" : "Added to club" }
-                    <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div>
                     </button>
                     </li>
                 )}

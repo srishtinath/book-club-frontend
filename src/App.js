@@ -29,6 +29,7 @@ class App extends Component {
       quote: ""
     },
     token: "",
+    clubs: []
   }
 
   componentDidMount(){
@@ -41,8 +42,15 @@ class App extends Component {
       })
       .then(r => r.json())
       .then(this.handleResponse)
-
     }
+
+    fetch("http://localhost:3000/clubs")
+        .then(r => r.json())
+        .then(fetchedClubs => {
+            this.setState({
+                clubs: fetchedClubs
+            })
+        })
   }
   
   handleLoginSubmit = (userInfo) => {
@@ -76,7 +84,10 @@ class App extends Component {
     if (resp.message){
       console.log(resp.message)
     } else {
-      this.setState(resp)
+      this.setState({
+        user: resp.user,
+        token: resp.token
+      })
       localStorage.token = resp.token
       this.props.history.push("/home")
     }
@@ -98,7 +109,7 @@ class App extends Component {
 
   renderHome = (routerProps) => {
     if (this.state.token) {
-      return <UserHome user={this.state.user} goToWishlist={this.goToWishlist}/>
+      return <UserHome user={this.state.user} goToWishlist={this.goToWishlist} clubs={this.state.clubs}/>
     } else {
       this.props.history.push("/login")
       console.log("boo")
@@ -123,6 +134,34 @@ class App extends Component {
     // this.props.history.push('/home')
   }
 
+  addOneClub = (clubObject) => {
+    let newClubArray = [...this.state.clubs]
+    newClubArray.push(clubObject)
+    this.setState({
+        clubs: newClubArray
+    })
+  }
+
+  memberAdded = (newMember, club) => {    
+    let clubChanged = this.state.clubs.find(clubList => clubList.id === club.id)
+    console.log(clubChanged)
+        if (!clubChanged.users){
+            clubChanged.users = []
+        }
+        clubChanged.users.concat(newMember)
+        let changedClubArray = this.state.clubs.filter(clubEntry => {
+            if (clubEntry.id === clubChanged.id){
+                return clubChanged
+            } else {
+                return clubEntry
+            }
+        })
+        this.setState({
+            clubs: changedClubArray,
+        })
+        return changedClubArray
+  }
+
   render() { 
     // console.log(this.state)
     return ( 
@@ -138,7 +177,10 @@ class App extends Component {
           <div className="body-content">
             <Switch>
               <Route path="/home" exact render={this.renderHome}/>
-              <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} />}/>
+              <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} 
+                                                        memberAdded={this.memberAdded} 
+                                                        newClubCreated={this.newClubCreated} 
+                                                        addOneClub={this.addOneClub}/>}/>
               <Route path="/books" exact render={() => <Books user={this.state.user} />}/>
               <Route path="/login" exact render={this.renderForm} />
               <Route path="/register" exact render={this.renderForm} />

@@ -40,6 +40,7 @@ class CreateClub extends Component {
                     club={this.state.newClub} 
                     listOfUsers={this.props.users} 
                     users={this.state.users} 
+                    addOneClub={this.props.addOneClub}
                     memberAdded={this.props.memberAdded} 
                     seeDetailsOfNewClub={this.props.seeDetailsOfNewClub}/>
                     }

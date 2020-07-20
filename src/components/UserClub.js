@@ -8,7 +8,10 @@ class UserClub extends Component {
             toggleUpdate: false,
             userClubProgress: this.findProgress(),
             club: {},
-            activeBook: {}
+            activeBook: {
+                title: "",
+                description: ""
+            }
          }
     }
 
@@ -17,7 +20,8 @@ class UserClub extends Component {
         .then(r => r.json())
         .then(fetchedClub => {
             this.setState({
-                club: fetchedClub
+                club: fetchedClub,
+                activeBook: fetchedClub.current_book
             }, this.findActiveBook(fetchedClub))
         })
     }
@@ -31,6 +35,13 @@ class UserClub extends Component {
             activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
             this.setState({
                 activeBook: activeBookFound
+            })
+        } else {
+            this.setState({
+                activeBook: {
+                    title: "",
+                    description: ""
+                }
             })
         }
     }

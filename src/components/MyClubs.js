@@ -10,6 +10,7 @@ class MyClubs extends Component {
         currentClub: {},
         users: [],
         displayClubList: true,
+        members: []
     }
     
 
@@ -32,15 +33,18 @@ class MyClubs extends Component {
 
     onClubClick = (selectedClubObject) => {
         this.setState({
-            currentClub: selectedClubObject
+            currentClub: selectedClubObject,
+            members: selectedClubObject.users
         })
     }
 
     addOneClub = (clubObject) => {
-        let newClubArray = [...this.state.clubs, clubObject]
+        let newClubArray = [...this.state.clubs]
+        newClubArray.push(clubObject)
         this.setState({
             clubs: newClubArray
         })
+        this.props.addOneClub(clubObject)
     }
 
     deleteClub = (clubObject) => {
@@ -64,19 +68,31 @@ class MyClubs extends Component {
         })
     }
 
-    memberAdded = (newMember, club) => {
-        let changedClubArray = this.props.memberAdded(newMember, club)
-        this.setState({
-            clubs: changedClubArray,
-            club: club
-        })
-    }
-
     seeDetailsOfNewClub = (club) => {
         this.setState({
             currentClub: club,
             displayClubList: true
         })
+    }
+
+    memberAdded = (newMember, club) => {
+        let changedClub 
+        if (!club.users){
+            changedClub.users = []   
+        }
+        changedClub = club.users.push(newMember)
+        let changedClubArray = this.state.clubs
+        changedClubArray.map(clubList => {
+            if(clubList.id !== club.id){
+                return clubList
+            } else {
+                return changedClub
+            }
+        })
+        this.setState({
+            clubs: changedClubArray,
+        })
+        this.props.memberAdded(newMember, club)
     }
 
     render() { 
@@ -96,6 +112,7 @@ class MyClubs extends Component {
                         club={this.state.currentClub} 
                         deleteClub={this.deleteClub} 
                         users={this.state.users}
+                        members={this.state.members}
                         memberAdded={this.memberAdded} 
                         />
                         : 
@@ -108,7 +125,8 @@ class MyClubs extends Component {
                 addOneClub={this.addOneClub} 
                 users={this.state.users} 
                 memberAdded={this.memberAdded} 
-                seeDetailsOfNewClub={this.seeDetailsOfNewClub}/>
+                seeDetailsOfNewClub={this.seeDetailsOfNewClub}
+                newClubCreated={this.props.newClubCreated}/>
                 }
             
             <button 

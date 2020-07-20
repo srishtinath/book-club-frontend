@@ -9,13 +9,10 @@ class Profile extends Component {
     }
 
     componentDidMount(){
-        fetch("http://localhost:3000/clubs")
-        .then(r => r.json())
-        .then(fetchedClubs => 
-            this.setState({
-                clubs: fetchedClubs,
-                user: this.props.user
-        }))
+        this.setState({
+            clubs: this.props.clubs,
+            user: this.props.user
+        })
     }
 
     componentDidUpdate(prevProps){

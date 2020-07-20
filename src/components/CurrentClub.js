@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import CurrentBook from './CurrentBook';
 import ChooseBook from './ChooseBook';
+import CurrentClubUserBook from './CurrentClubUserBook';
 
 class CurrentClub extends Component {
     
     state = {
         showMembers: false,
-        users: [],
         books: [],
+        members: [],
         activeBook: {},
         chooseBook: false
     }
@@ -16,11 +17,20 @@ class CurrentClub extends Component {
         fetch("http://localhost:3000/books")
         .then(r => r.json())
         .then(fetchedBooks => {
-            this.setState({
-                books: fetchedBooks
-            }, this.findActiveBook(this.props.club))
+            if (this.props.club.current_book){
+                let activeClubBook = fetchedBooks.find(book => book.id === this.props.club.current_book.book_id)
+                this.setState({
+                    books: fetchedBooks,
+                    activeBook: activeClubBook,
+                    members: this.props.members
+                })
+
+            } else {
+                this.setState({
+                    books: fetchedBooks
+                })
+            }
         })
-        
     }
 
     componentDidUpdate(prevProps){
@@ -77,36 +87,6 @@ class CurrentClub extends Component {
     }
 
 
-    addMember = (user) => {
-        fetch("http://localhost:3000/user_clubs", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json"
-            },
-            body: JSON.stringify({
-                club_id: this.props.club.id,
-                user_id: user.id,
-                progress: 0
-            })
-        })
-        .then(r => r.json())
-        .then( this.props.memberAdded(user, this.props.club))
-    }
-
-    memberInClub = (userId) => {
-        if (this.props.club.users){
-            let existingUser = this.props.club.users.find(user => user.id === userId)
-            if (existingUser) {
-                return false
-            } else {
-                return true
-            }
-        } else {
-            return true
-        }
-    }
-
     findProgress = (user) => {
         let userClubs = this.props.club.user_clubs
         if (userClubs){
@@ -131,8 +111,17 @@ class CurrentClub extends Component {
         })
     }
 
+    memberAdded = (newMember) => {
+        let membersChanged = [...this.state.members]
+        membersChanged.push(newMember)
+        this.setState({
+            members: membersChanged
+        })
+        this.props.memberAdded(newMember, this.props.club)
+    }
+
     render() { 
-        let { name, image, meeting, users } = this.props.club
+        let { name, image, meeting } = this.props.club
         console.log(this.props.club.user_clubs)
         return ( 
             <div className="current-club-container">
@@ -143,10 +132,10 @@ class CurrentClub extends Component {
                 
 
                 <div className="user-info">
-                    <p> {users ? `Number of members: ${users.length}` : null}</p>
+                    <p> { this.state.members ? `Number of members: ${this.state.members.length}` : null}</p>
                     <ul>
-                        {users.map(user => 
-                            <li key={user.id + Math.random()}>{user.name} Progress: {this.findProgress(user) ? this.findProgress(user) : 0} </li>
+                        {this.state.members.map(member => 
+                            <li key={member.id + Math.random()}>{member.name} Progress: {this.findProgress(member) ? this.findProgress(member) : 0} </li>
                             )}
                     </ul>
                     <button onClick={this.toggleMembers} className="button">Add Members
@@ -162,12 +151,8 @@ class CurrentClub extends Component {
                                 <span className="close" onClick={this.closeMembers}>×</span>
                                 <ul>
                                 {this.props.users.map(user => 
-                                <li>{user.name}
-                                <button className="simple-button" 
-                                onClick={() => this.addMember(user)}
-                                disabled={!this.memberInClub(user.id)}> 
-                                { this.memberInClub(user.id) ? "Add!" : "Added to club" }
-                                </button>
+                                <li key={user.id}>{user.name}
+                                    <CurrentClubUserBook user={user} club={this.props.club} memberAdded={this.memberAdded}/>
                                 </li>
                                 )}
                                 </ul>
