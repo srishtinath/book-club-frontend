@@ -31,13 +31,15 @@ class CurrentClub extends Component {
                 })
             }
         })
+        this.setState({
+            members: this.props.members
+        })
     }
 
     componentDidUpdate(prevProps){
         if (this.props.club !== prevProps.club){
             this.findActiveBook(this.props.club)
         }
-        
     }
 
     toggleMembers = () => {
@@ -121,7 +123,7 @@ class CurrentClub extends Component {
     }
 
     render() { 
-        let { name, image, meeting } = this.props.club
+        let { name, image, meeting, users } = this.props.club
         console.log(this.props.club.user_clubs)
         return ( 
             <div className="current-club-container">
@@ -132,9 +134,9 @@ class CurrentClub extends Component {
                 
 
                 <div className="user-info">
-                    <p> { this.state.members ? `Number of members: ${this.state.members.length}` : null}</p>
+                    <p> { users ? `Number of members: ${users.length}` : null}</p>
                     <ul>
-                        {this.state.members.map(member => 
+                        {users.map(member => 
                             <li key={member.id + Math.random()}>{member.name} Progress: {this.findProgress(member) ? this.findProgress(member) : 0} </li>
                             )}
                     </ul>
