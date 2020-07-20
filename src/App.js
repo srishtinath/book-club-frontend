@@ -131,7 +131,7 @@ class App extends Component {
       },
       token: ""
     })
-    // this.props.history.push('/home')
+    this.props.history.push('/home')
   }
 
   addOneClub = (clubObject) => {
@@ -141,6 +141,20 @@ class App extends Component {
         clubs: newClubArray
     })
   }
+
+  deleteClub = (clubObject) => {
+    let deletedClub = this.state.clubs.find(club => club.id === clubObject.id)
+    let newClubArray = this.state.clubs.filter(club => {
+        if (club.id === deletedClub.id){
+            return null 
+        } else {
+            return club
+        }
+    })
+    this.setState({
+        clubs: newClubArray
+    })
+}
 
   memberAdded = (newMember, club) => {    
     let clubChanged = this.state.clubs.find(clubList => clubList.id === club.id)
@@ -180,7 +194,8 @@ class App extends Component {
               <Route path="/clubs" exact render={() => <MyClubs user={this.state.user} 
                                                         memberAdded={this.memberAdded} 
                                                         newClubCreated={this.newClubCreated} 
-                                                        addOneClub={this.addOneClub}/>}/>
+                                                        addOneClub={this.addOneClub}
+                                                        deleteClub={this.deleteClub}/>}/>
               <Route path="/books" exact render={() => <Books user={this.state.user} />}/>
               <Route path="/login" exact render={this.renderForm} />
               <Route path="/register" exact render={this.renderForm} />

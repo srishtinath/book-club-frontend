@@ -60,6 +60,7 @@ class MyClubs extends Component {
             clubs: newClubArray,
             currentClub: {}
         })
+        this.props.deleteClub(clubObject)
     }
 
     showClubForm = () => {

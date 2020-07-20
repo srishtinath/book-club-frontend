@@ -8,10 +8,7 @@ class UserClub extends Component {
             toggleUpdate: false,
             userClubProgress: this.findProgress(),
             club: {},
-            activeBook: {
-                title: "",
-                description: ""
-            }
+            activeBook: {}
          }
     }
 
@@ -20,30 +17,20 @@ class UserClub extends Component {
         .then(r => r.json())
         .then(fetchedClub => {
             this.setState({
-                club: fetchedClub,
-                activeBook: fetchedClub.current_book
+                club: fetchedClub
             }, this.findActiveBook(fetchedClub))
         })
     }
 
 
     findActiveBook = (club) => {
-        let activeBookEntry 
         let activeBookFound
-        if (club.book_clubs) {
-            activeBookEntry = club.book_clubs.find(entry => entry["active?"] === true)
-            activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
+        if (club.current_book) {
+            activeBookFound = club.books.find(book => book.id === club.current_book.book_id)
             this.setState({
                 activeBook: activeBookFound
             })
-        } else {
-            this.setState({
-                activeBook: {
-                    title: "",
-                    description: ""
-                }
-            })
-        }
+        } 
     }
 
     findProgress = () => {
@@ -95,8 +82,8 @@ class UserClub extends Component {
 
         return (
             <div className="userclub-container">
-                <img className="userclub-img" src={image} alt={name} style={{width:'30%'}}></img>
-                <div className="user-club-div" style={{width:'40%'}}>
+                <img className="userclub-img" src={image} alt={name} style={{maxWidth:'30%'}}></img>
+                <div className="user-club-div" style={{width:'80%'}}>
                     <b>{name}</b>
                     <br></br>Currently Reading: {this.state.activeBook.title}
                     <br></br>Meeting Date: {meeting}

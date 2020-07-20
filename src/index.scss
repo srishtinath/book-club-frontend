@@ -98,7 +98,7 @@ a:hover {
  position: relative;
  top: 5%;
  width: 25%;
- height: 100%;
+ height: 500px ;
  margin-right: 3%;
  overflow: auto;
 //  background-color: ;
@@ -123,7 +123,6 @@ a:hover {
   position: relative;
   width: 70%;
   background-color: rgba(255,255,255, 0.4);
-  height: 150%;
   padding: 0% 3%;
   top: 6%;
   align-items: center;
@@ -156,7 +155,10 @@ a:hover {
 }
 
 .add-club-btn {
-  width: 25%;
+  position: absolute;
+  width: 20%;
+  margin-top: 2%;
+  margin-left: 2%;
 }
 
 .create-club-container {
@@ -172,7 +174,10 @@ a:hover {
 
 .create-club-content {
   display: flex;
-  height: 500px;
+  height: 400px;
+  background-color: rgba(255,255,255, 0.4);
+  padding: 5%;
+  margin: auto;
 }
 
 .create-club {
@@ -392,7 +397,8 @@ a:hover {
   width: 60%;
   margin-left: 1%;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: rgba(255,255,255, 0.3);
 }
 
@@ -411,12 +417,12 @@ a:hover {
 
 // srishti added the following:
 @-webkit-keyframes slide-right {
-  100% { right: 80px; }
+  100% { right: 15%; }
 }
 
 // srishti added the following:
 @keyframes slide-right {
-  100% { right: 80px; }
+  100% { right: 15%; }
 }
 
 
