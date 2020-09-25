@@ -39,8 +39,6 @@ class Book extends Component {
     checkOnWishlist = () => {
         let user = this.props.user
         if (user.books) {
-            console.log(this.props)
-            // debugger
             let existingBook = user.books.find(
                 book => book.id 
                 === this.props.book.id)
@@ -55,7 +53,6 @@ class Book extends Component {
 
     render() { 
         let { title, author, image, genre, rating, description } = this.props.book
-        // console.log(this.props)
         return ( 
                 <div className="book-card">
                     <div className="overlay">

@@ -1,14 +1,11 @@
 import React from 'react';
-// import UserBook from './UserBooks'
 
 const UserBooks = (props) => {
-    // console.log(props.user.books.map(book => book.title))
 
     let goToBooksList = () => {
         props.goToWishlist()
     }
 
-    console.log(props.user.books)
     return ( 
         <>
         <div >

@@ -31,7 +31,6 @@ class Profile extends Component {
                 {this.props.user ? 
                 <>
                     <div className="top-container">
-                        {/* First entry */}
                             <div className="user-photo-container">
                                 <div className="user-photo-content">
                                     <img className="user-photo" src={this.props.user.image} alt={this.state.user.id}/>
@@ -41,7 +40,6 @@ class Profile extends Component {
                     
                         
                             <div className="userclublist">
-                                {/* Second entry */}
                                 <div>
                                     {this.state.user.clubs ? 
                                     <ul className="user-club-list" style={{listStyleType: 'none'}}>

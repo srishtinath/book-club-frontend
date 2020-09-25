@@ -8,7 +8,6 @@ class ChooseBook extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(event.target)
         fetch("http://localhost:3000/book_clubs", {
             method: "POST", 
             headers: {
@@ -23,21 +22,18 @@ class ChooseBook extends Component {
         })
         .then(r => r.json())
         .then( fetchedBook => {
-            console.log(fetchedBook)
             this.props.addActiveBook(fetchedBook)
             this.props.hideBookForm()
         })
     }
 
     handleChange = (e) => {
-        console.log(e.target.parentNode)
         this.setState({
             chosenBookId: e.target.parentNode.id
         })
     }
 
     render() { 
-        console.log(this.state.chosenBookId)
         return ( 
             <form>
                 <p>Choose Book!</p>

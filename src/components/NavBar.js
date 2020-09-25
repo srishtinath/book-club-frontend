@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom"; 
-// import BookWormLogo from '../images/BookWormLogo.png';
 
 
 import WormPic5 from "../images/WormPic5.png";

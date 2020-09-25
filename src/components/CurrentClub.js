@@ -65,7 +65,6 @@ class CurrentClub extends Component {
     }
 
     findActiveBook = (club) => {
-        // console.log(this.props.club.book_clubs)
         if (club.book_clubs){
             let activeBookEntry = club.book_clubs.find(entry => entry["active?"] === true)
             let activeBookFound = club.books.find(book => book.id === activeBookEntry.book_id)
@@ -124,7 +123,6 @@ class CurrentClub extends Component {
 
     render() { 
         let { name, image, meeting, users } = this.props.club
-        console.log(this.props.club.user_clubs)
         return ( 
             <div className="current-club-container">
                 <div className="club-title"><h1>{name}</h1></div>

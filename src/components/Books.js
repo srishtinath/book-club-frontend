@@ -28,7 +28,6 @@ class Books extends Component {
         }, this.filteredBookSearch)
     }
 
-    //added the filter function
     filteredBookSearch = () => {
         let filteredBookArray = this.state.books
         filteredBookArray = this.state.books.filter((book) => {
