@@ -51,6 +51,7 @@ class ClubForm extends Component {
                 placeholder="Club Name..."
                 value={this.state.name}
                 onChange={this.handleInput}
+                autocomplete="off"
             />
             <p></p>
             <label>Give it an image: </label>
@@ -60,6 +61,7 @@ class ClubForm extends Component {
                 placeholder="Club Image..."
                 value={this.state.image}
                 onChange={this.handleInput}
+                autocomplete="off"
             />
             <p></p>
             <label>When are you planning to meet? </label>
@@ -69,6 +71,7 @@ class ClubForm extends Component {
                 placeholder="Meeting Date (DD/MM/YYYY)"
                 value={this.state.meeting}
                 onChange={this.handleInput}
+                autocomplete="off"
             />
         <p></p>
             <input type="submit" name="submit" value="Let's Read!" 

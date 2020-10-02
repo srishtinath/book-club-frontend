@@ -139,8 +139,6 @@ class CurrentClub extends Component {
                             )}
                     </ul>
                     <button onClick={this.toggleMembers} className="button">Add Members
-                    {/* <div class="button__horizontal"></div>
-                    <div class="button__vertical"></div> */}
                     </button>
                 
                     {this.state.showMembers 

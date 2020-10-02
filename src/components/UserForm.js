@@ -38,9 +38,9 @@ class UserForm extends Component {
         return (
         <div className="login-form"> <h1>{formName}</h1>
             <form onSubmit={this.handleSubmit} >
-                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Enter name"></input>
+                <input type="text" name="name" value={this.state.name} onChange={this.handleChange} placeholder="Enter name" autocomplete="off"></input>
                 <br></br>
-                <input type="text" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter password"></input>
+                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter password" autocomplete="off"></input>
                 <br></br>
                 { this.props.formName === "Register Form" ? 
                 <>
